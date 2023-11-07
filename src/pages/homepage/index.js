@@ -44,6 +44,9 @@ function Homepage() {
                                     <Search>
                                         Boyko Borisov
                                     </Search>
+                                    <SearchButton>
+                                        Check Now
+                                    </SearchButton>
                                 </SearchBoxSplit>
                             </SearchBox>
                         </ContentBox>
@@ -126,6 +129,7 @@ const Slogan = styled.h1`
     font-weight: 100;
     font-size: 70px;
     line-height: 95.34px;
+    margin-top: 60px;
 `;
 
 const Strong = styled.span`
@@ -145,7 +149,7 @@ const StageText = styled.p`
 const SmallText = styled.p`
     color: #fff;
     opacity: .4;
-    margin-top: 60px;
+    margin-top: 100px;
     font-weight: 300;
     font-size: 14px;
     line-height: 30px;
@@ -155,21 +159,48 @@ const SearchBox = styled.div`
     max-width: 700px;
     width: 85%;
     height: 100px;
-    margin-top: 60px;
+    margin-top: 100px;
     border-radius: 3px;
     background-color: #FFC700;
 `;
 
 const SearchBoxSplit = styled.div`
     display: flex;
+    height: calc(100% - 20px);
     margin: 10px;
+    border-radius: 3px;
 `;
 
 const Search = styled.div`
+    flex: 3;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, .15);
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 100;
+    padding-left: 2rem;
+`;
+
+const SearchButton = styled.button`
+    flex: 1;
+    margin-left: 10px;
+    font-size: 18px;
+    line-height: 30px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    background: linear-gradient(180deg, #007AEB 0%, #0063BF 100%);
+    transition: .4s;
+
+    &:hover {
+        cursor: pointer;
+        transition: .4s;
+        background: linear-gradient(180deg, #007AEB 100%);
+
+    }
 `;
 
 export default Homepage;
