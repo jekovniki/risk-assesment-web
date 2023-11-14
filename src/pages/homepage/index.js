@@ -41,9 +41,7 @@ function Homepage() {
                             <SmallText>Try it now</SmallText>
                             <SearchBox>
                                 <SearchBoxSplit>
-                                    <Search>
-                                        Boyko Borisov
-                                    </Search>
+                                    <Search placeholder="Boyko Borisov" />
                                     <SearchButton>
                                         Check Now
                                     </SearchButton>
@@ -171,9 +169,10 @@ const SearchBoxSplit = styled.div`
     border-radius: 3px;
 `;
 
-const Search = styled.div`
+const Search = styled.input`
     flex: 3;
     border-radius: 3px;
+    font-size: 1.25rem;
     background-color: rgba(0, 0, 0, .15);
     height: 100%;
     width: 100%;
@@ -181,6 +180,7 @@ const Search = styled.div`
     align-items: center;
     color: #fff;
     font-weight: 100;
+    border:none;
     padding-left: 2rem;
 `;
 
