@@ -31,6 +31,9 @@ function Homepage() {
                                 <MenuItems>
                                     <Link href="/">Contact Us</Link>
                                 </MenuItems>
+                                <MenuItems>
+                                    <Link href="/sign-in">Sign In</Link>
+                                </MenuItems>
                             </MenuList>
                         </NavigationMenu>
                     </SoftBox>
