@@ -6,6 +6,7 @@ import PrivateLayout from "../layouts/PrivateLayout";
 
 /* ICONS */
 import DashboardIcon from "@mui/icons-material/DashboardOutlined";
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 const routes = [
   {
@@ -33,7 +34,7 @@ const routes = [
     name: "Search result",
     key: "search",
     route: "/search",
-    icon: <DashboardIcon size="12px" />,
+    icon: <PersonSearchIcon size="12px" />,
     component: <PrivateLayout><Dashboard /></PrivateLayout>,
     sideNav: true,
     noCollapse: true,

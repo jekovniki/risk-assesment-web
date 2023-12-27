@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useService from "../../hooks/useService";
@@ -41,7 +41,7 @@ function SignIn() {
     useEffect(() => {
         if (result) {
             if (result.success === true) {
-                navigate(result.options.url);
+                navigate("/dashboard");
             } else {
                 setErrorMessage(result.message);
             }

@@ -31,7 +31,7 @@ const colors = {
 
   primary: {
     main: "#EF3D25",
-    focus: "#cf2811",
+    focus: "#007AEB",
   },
 
   secondary: {
@@ -41,7 +41,7 @@ const colors = {
 
   info: {
     main: "#007AEB",
-    focus: "#cf2811",
+    focus: "#007AEB",
   },
 
   success: {
@@ -84,7 +84,7 @@ const colors = {
   gradients: {
     primary: {
       main: "#EF3D25",
-      state: "#cf2811",
+      state: "#007AEB",
     },
 
     secondary: {
@@ -93,7 +93,7 @@ const colors = {
     },
 
     info: {
-      main: "#cf2811",
+      main: "#007AEB",
       state: "#EF3D25",
     },
 
@@ -119,7 +119,7 @@ const colors = {
 
     dark: {
       main: "#141727",
-      state: "#cf2811",
+      state: "#007AEB",
     },
   },
 
