@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from "react";
 import useService from '../../hooks/useService';
-import { search } from '../../services';
+import { search, users } from '../../services';
 
 import Grid from "@mui/material/Grid";
 import { Card } from "@mui/material";
@@ -14,18 +14,21 @@ import SoftBox from '../../components/SoftBox';
 import { StandardBox } from '../../components/StandardBox';
 
 import { arrowRight } from '../../assets/svg/arrow-right';
-import Loader from '../../components/Loader';
 import DashboardSearch from '../../features/DashboardSearch';
-
+import { getUserNavData, setUserInNav } from '../../utils/helpers';
 
 function Dashboard() {
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(true);
     const [peps, setPeps] = useState(null);
     const getAllPeps = useService(search.getPep);
+    const getUserInformation = useService(users.getUserInformation);
+    const [firstName, setFirstName] = useState(""); 
+
     useEffect(() => {
         setLoading(true);
         getAllPeps.executeService();
+        getUserInformation.executeService();
     }, []);
 
     useEffect(() => {
@@ -38,6 +41,16 @@ function Dashboard() {
             setErrorMessage(getAllPeps.error.message);
         }
     }, [getAllPeps.result, getAllPeps.error])
+
+    useEffect(() => {
+        if (getUserInformation?.result?.data) {
+            setUserInNav(getUserInformation.result.data);
+            setFirstName(getUserInformation.result.data?.firstName ?? "");
+        }
+        if (getUserInformation?.error) {
+            console.error(getUserInformation?.error?.message ?? "");
+        }
+    }, [getUserInformation.result, getUserInformation.error])
 
     return (
         <DashboardLayout>
@@ -52,7 +65,7 @@ function Dashboard() {
                                     <SoftBox>
                                         <SoftTypography pb={2} variant="h2" fontWeight="medium" textTransform="capitalize">
                                             <HeadlineText>
-                                                Hello <strong>Nikolay</strong>,
+                                                Hello <strong>{firstName}</strong>,
                                             </HeadlineText>
                                             <Text>Welcome to our pep check services! We're here to ensure you receive the best assistance possible.<br />How can we support you today?</Text>
                                         </SoftTypography>

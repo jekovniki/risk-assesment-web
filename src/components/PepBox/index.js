@@ -8,7 +8,7 @@ const PepBox = ({
     dateOfBirth = "",
     placeOfBirth = "",
     gender = "",
-    citizenship = ""
+    citizenship = "Bulgarian"
 }) => {
 
     return (

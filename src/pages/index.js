@@ -7,6 +7,8 @@ import PrivateLayout from "../layouts/PrivateLayout";
 /* ICONS */
 import DashboardIcon from "@mui/icons-material/DashboardOutlined";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import SpeedIcon from '@mui/icons-material/Speed';
+import RestoreIcon from '@mui/icons-material/Restore';
 
 const routes = [
   {
@@ -24,17 +26,27 @@ const routes = [
     name: "Dashboard",
     key: "dashboard",
     route: "/dashboard",
-    icon: <DashboardIcon size="12px" />,
+    icon: <SpeedIcon size="12px" />,
     component: <PrivateLayout><Dashboard /></PrivateLayout>,
     sideNav: true,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "Search result",
+    name: "New search",
     key: "search",
     route: "/search",
     icon: <PersonSearchIcon size="12px" />,
+    component: <PrivateLayout><Dashboard /></PrivateLayout>,
+    sideNav: true,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Search History",
+    key: "history",
+    route: "/history",
+    icon: <RestoreIcon size="12px" />,
     component: <PrivateLayout><Dashboard /></PrivateLayout>,
     sideNav: true,
     noCollapse: true,

@@ -15,7 +15,7 @@ const DashboardSearch = ({
 }) => {
     const [pepFilter, setPepFilter] = useState(null);
     const [pepName, setPepName] = useState("");
-    
+
     const getPep = () => {
         const result = pepList.filter(pep => pep.name.includes(pepName));
         setPepFilter(result);
@@ -66,7 +66,7 @@ const DashboardSearch = ({
                                         dateOfBirth={pep?.dateOfBirth ?? ""}
                                         placeOfBirth={pep?.placeOfBirth ?? ""}
                                         gender={pep?.gender ?? ""}
-                                        citizenship={pep?.citizenship ?? ""}
+                                        citizenship={pep?.citizenship ?? "Bulgarian"}
                                     />
                                 </StandardBox>
                             ))}

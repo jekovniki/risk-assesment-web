@@ -21,6 +21,8 @@ import {
   navbarRow,
   navbarMobileMenu,
 } from "../../Navbars/DashboardNavbar/styles";
+import DropdownMenu from "../DropdownMenu";
+import { ProfileBox } from "../NavbarItems/ProfileBox";
 
 import {
   useSoftUIController,
@@ -30,6 +32,7 @@ import {
 
 import { LOCAL_STORAGE_KEYS } from "../../../utils/constants";
 import Storage from "../../../utils/storage";
+import { getUserNavData } from "../../../utils/helpers";
 
 function DashboardNavbar({ absolute, light, isMini, pageSpecificChildren = "", hasTitle = true, relative }) {
   const [navbarType, setNavbarType] = useState();
@@ -75,6 +78,7 @@ function DashboardNavbar({ absolute, light, isMini, pageSpecificChildren = "", h
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
   const handleCloseMenu = () => setOpenMenu(false);
+  const userData = getUserNavData();
 
   const profileMenu = [{
     image: <ProfileIcon size="12px" />,
@@ -83,14 +87,6 @@ function DashboardNavbar({ absolute, light, isMini, pageSpecificChildren = "", h
     onClick: () => { handleCloseMenu(); navigate("/profile") }
   }, {
     type: "separator"
-  }, {
-    image: <HelpOutlineIcon size="12px" />,
-    title: "Help Desk",
-    text: "Get Help from our Help Desk",
-    onClick: () => {
-      handleCloseMenu();
-      openInNewTab("https://home.on.seo/helpdesk/SitePages/Home.aspx");
-    }
   }, {
     className: "logoutItem",
     image: < LogoutOutlinedIcon size="12px" />,
@@ -122,6 +118,8 @@ function DashboardNavbar({ absolute, light, isMini, pageSpecificChildren = "", h
                   {miniSidenav ? "menu_open" : "menu"}
                 </Icon>
               </IconButton>
+              <ProfileBox handleOpen={handleOpenMenu} userData={userData} />
+              <DropdownMenu openDropdown={openMenu} closeDropdown={handleCloseMenu} items={profileMenu} />
             </SoftBox>
           </SoftBox>
         )}

@@ -16,7 +16,7 @@ import routes from "./pages";
 
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "./context";
 
-// import brand from "./assets/images/AUG-LOGO-BR.svg";
+import brand from "./assets/images/RISK-LOGO.svg";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -100,7 +100,7 @@ export default function App() {
         <>
           <Sidenav
             color={sidenavColor}
-            brand={""}
+            brand={brand}
             brandName="Risk Assesment"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}

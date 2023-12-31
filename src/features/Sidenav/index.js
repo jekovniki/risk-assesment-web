@@ -132,7 +132,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           </SoftTypography>
         </SoftBox>
         <SoftBox component={NavLink} to="/homepage" display="flex" alignItems="center">
-          {brand && <SoftBox component="img" src={brand} alt="AUG.Global" width="100%" />}
+          {brand && <SoftBox component="img" src={brand} alt="AUG.Global" width="80%" style={{
+            marginLeft: "auto",
+            marginRight: "auto"
+          }} />}
           <SoftBox
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
