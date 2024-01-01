@@ -9,6 +9,7 @@ import PepBox from '../../components/PepBox';
 
 import Loader from '../../components/Loader';
 import { setSearch } from '../../utils/helpers';
+import { DEFAULT_IMAGE } from '../../utils/constants';
 
 const DashboardSearch = ({
     loading = false,
@@ -62,8 +63,9 @@ const DashboardSearch = ({
                             {pepFilter.map((pep) => (
                                 <StandardBox>
                                     <PepBox
-                                        key={pep.id} // Add a unique key to each PepBox
-                                        image="https://upload.wikimedia.org/wikipedia/commons/3/3b/Delyan_Peevski_%2841NS%29.png"
+                                        key={pep._id} // Add a unique key to each PepBox
+                                        id={pep._id}
+                                        image={DEFAULT_IMAGE}
                                         name={pep?.name}
                                         dateOfBirth={pep?.dateOfBirth ?? ""}
                                         placeOfBirth={pep?.placeOfBirth ?? ""}

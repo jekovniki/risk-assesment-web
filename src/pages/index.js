@@ -11,6 +11,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import RestoreIcon from '@mui/icons-material/Restore';
 import SignUp from "./sign-up";
 import History from "./history";
+import PEP from "./pep";
 
 const routes = [
   {
@@ -51,6 +52,16 @@ const routes = [
     icon: <RestoreIcon size="12px" />,
     component: <PrivateLayout><History /></PrivateLayout>,
     sideNav: true,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Politically exposed person",
+    key: "pep",
+    route: "/pep/:id",
+    icon: <RestoreIcon size="12px" />,
+    component: <PrivateLayout><PEP /></PrivateLayout>,
+    sideNav: false,
     noCollapse: true,
   },
 //   {

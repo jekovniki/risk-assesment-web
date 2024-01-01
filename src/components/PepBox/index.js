@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { arrowRight } from '../../assets/svg/arrow-right';
 
 const PepBox = ({
+    id = "",
     image = "",
     name = "",
     dateOfBirth = "",
@@ -17,7 +19,7 @@ const PepBox = ({
             <PepContentBox>
                 <TwoColumns>
                     <div>{ name }</div>
-                    <div>{arrowRight()}</div>
+                    <div><Link to={`/pep/${id}`}>{arrowRight()}</Link></div>
                 </TwoColumns>
                 <PepDataWrapper>
                     <PepDataBox>
