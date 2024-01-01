@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import useService from "../../../hooks/useService";
-import { auth } from "../../../services/index";
 import PropTypes from "prop-types";
 
 import AppBar from "@mui/material/AppBar";
@@ -11,7 +9,6 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 import ProfileIcon from "@mui/icons-material/AccountCircleOutlined";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import SoftBox from "../../../components/SoftBox";

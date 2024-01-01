@@ -15,7 +15,7 @@ import { StandardBox } from '../../components/StandardBox';
 
 import { arrowRight } from '../../assets/svg/arrow-right';
 import DashboardSearch from '../../features/DashboardSearch';
-import { getUserNavData, setUserInNav } from '../../utils/helpers';
+import { getLatestSearch, setUserInNav } from '../../utils/helpers';
 
 function Dashboard() {
     const [errorMessage, setErrorMessage] = useState("");
@@ -23,8 +23,13 @@ function Dashboard() {
     const [peps, setPeps] = useState(null);
     const getAllPeps = useService(search.getPep);
     const getUserInformation = useService(users.getUserInformation);
-    const [firstName, setFirstName] = useState(""); 
+    const [firstName, setFirstName] = useState("");
 
+    const latestSearches = getLatestSearch();
+    let allSearches = []
+    if (latestSearches) {
+        allSearches = latestSearches.slice(-5);
+    }
     useEffect(() => {
         setLoading(true);
         getAllPeps.executeService();
@@ -86,6 +91,11 @@ function Dashboard() {
                                         {arrowRight()}
                                     </div>
                                 </TwoColumns>
+                                <div>
+                                    {allSearches.map((pep) => (
+                                        <LatestNameSearch>{pep}</LatestNameSearch>
+                                    ))}
+                                </div>
                             </StandardBox>
                         </Grid>
                     </Grid>
@@ -100,41 +110,11 @@ const TwoColumns = styled.div`
     justify-content: space-between;
 `;
 
-const PepBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
-const PepContentBox = styled.div`
-    width: 100%;
-`;
-
-const LabelBox = styled.div`
-    color: #666;
-    font-size: 14px;
-    font-weight: 300;
-`;
-
-const DataBox = styled.div`
-    
-`;
-
-const PepImage = styled.img`
-    border-radius: 3px;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    margin-right: 1rem;
-`;
-
-const PepDataWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+const LatestNameSearch = styled.p`
     font-size: 1rem;
-`;
-
-const PepDataBox = styled.div``;
+    line-height: 21px;
+    margin-bottom: .425rem;
+`
 
 const HeadlineText = styled.p`
     font-size: 46px;
@@ -168,21 +148,5 @@ const HomepageGrid = styled(Grid)`
         }
     }
  `
-
-const Search = styled.input`
-    flex: 3;
-    border-radius: 3px;
-    font-size: 1.25rem;
-    background-color: #fff;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: #333;
-    font-weight: 100;
-    border:none;
-    padding-left: 2rem;
-    width:100%;
-`;
 
 export default Dashboard;

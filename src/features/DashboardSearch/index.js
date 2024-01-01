@@ -8,6 +8,7 @@ import { StandardBox } from '../../components/StandardBox';
 import PepBox from '../../components/PepBox';
 
 import Loader from '../../components/Loader';
+import { setSearch } from '../../utils/helpers';
 
 const DashboardSearch = ({
     loading = false,
@@ -18,6 +19,7 @@ const DashboardSearch = ({
 
     const getPep = () => {
         const result = pepList.filter(pep => pep.name.includes(pepName));
+        setSearch(pepName);
         setPepFilter(result);
     }
 
