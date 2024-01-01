@@ -9,6 +9,7 @@ import DashboardIcon from "@mui/icons-material/DashboardOutlined";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import SpeedIcon from '@mui/icons-material/Speed';
 import RestoreIcon from '@mui/icons-material/Restore';
+import SignUp from "./sign-up";
 
 const routes = [
   {
@@ -79,6 +80,16 @@ const routes = [
     route: "/sign-in",
     icon: <DashboardIcon size="12px" />,
     component: <SignIn />,
+    sideNav: false,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Sign Up",
+    key: "sign-up",
+    route: "/sign-up",
+    icon: <DashboardIcon size="12px" />,
+    component: <SignUp />,
     sideNav: false,
     noCollapse: true,
   },

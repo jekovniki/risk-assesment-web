@@ -11,7 +11,7 @@ export async function signInWithCredentials(credentials) {
 }
 
 export async function signUp(credentials) {
-    const response = await FetchApi.post(process.env.REACT_APP_SERVER_URL + '/api/v1/auth/sign-in', {
+    const response = await FetchApi.post(process.env.REACT_APP_SERVER_URL + '/api/v1/auth/sign-up', {
         ...credentials,
         password: encode(credentials.password),
         repeatPassword: encode(credentials.password)

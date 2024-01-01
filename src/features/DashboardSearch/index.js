@@ -35,7 +35,7 @@ const DashboardSearch = ({
                             <div style={{
                                 display: "flex"
                             }}>
-                                <SoftBox pt={2} pb={2} pl={4} pr={4} mr={2} style={{
+                                <PerformSearch pt={2} pb={2} pl={4} pr={4} mr={2} style={{
                                     background: "linear-gradient(266.83deg, #2E88DB 2.79%, #0063BF 84.88%)",
                                     color: "#fff",
                                     borderRadius: "3px"
@@ -43,7 +43,7 @@ const DashboardSearch = ({
                                     onClick={getPep}
                                 >
                                     Perform a Search
-                                </SoftBox>
+                                </PerformSearch>
                                 <SoftBox pt={2} pb={2} pl={3} pr={3} style={{
                                     background: "rgba(14, 26, 50, 1)",
                                     borderRadius: "3px",
@@ -102,6 +102,15 @@ const Search = styled.input`
     padding-left: 2rem;
     width:100%;
 `;
+
+const PerformSearch = styled(SoftBox)`
+    transition: .4s;
+    &:hover {
+        cursor: pointer;
+        transition: .4s;
+        transform: scale(1.02);
+    }
+`
 
 
 export default DashboardSearch;
