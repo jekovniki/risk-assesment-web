@@ -10,6 +10,7 @@ import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import SpeedIcon from '@mui/icons-material/Speed';
 import RestoreIcon from '@mui/icons-material/Restore';
 import SignUp from "./sign-up";
+import History from "./history";
 
 const routes = [
   {
@@ -48,7 +49,7 @@ const routes = [
     key: "history",
     route: "/history",
     icon: <RestoreIcon size="12px" />,
-    component: <PrivateLayout><Dashboard /></PrivateLayout>,
+    component: <PrivateLayout><History /></PrivateLayout>,
     sideNav: true,
     noCollapse: true,
   },
