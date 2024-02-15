@@ -10,7 +10,7 @@ import SoftTypography from "../../components/SoftTypography";
 import SoftInput from "../../components/SoftInput";
 import SoftButton from "../../components/SoftButton";
 import CoverLayout from '../../layouts/CoverLayout';
-import brand from "../../assets/images/RISK-LOGO.svg";
+import { brand } from '../../App';
 
 function SignIn() {
     const [email, setEmail] = useState("");
@@ -41,11 +41,7 @@ function SignIn() {
 
     useEffect(() => {
         if (result) {
-            if (result.success === true) {
-                navigate("/dashboard");
-            } else {
-                setErrorMessage(result.message);
-            }
+            navigate("/dashboard");
         }
         if (error) {
             if (error.message) {
@@ -61,10 +57,9 @@ function SignIn() {
         <CoverLayout>
             <MyWrapper>
             <SoftBox display="flex" flexDirection="column" alignItems="center" mb={2}>
-            <SoftBox component="img" src={brand} alt="AUG.Global" width="250px" style={{
-            marginLeft: "auto",
-            marginRight: "auto"
-          }} />
+            <CustomBox>
+              {brand()}
+            </CustomBox>
                 <SoftTypography style={{fontSize: "1rem", fontWeight: "800", color:'rgba(0,0,0,.65'}} mt={2} mb={5} component="p" size="small" fontWeight="normal">
                     Welcome to Risk Assesment platform
                 </SoftTypography>
@@ -101,6 +96,13 @@ function SignIn() {
     );
   }
 
+  const CustomBox = styled.div`
+    margin-left:auto;
+    margin-right: auto;
+    > svg {
+        width: 250px!important;
+    }
+ `
 
   const MyWrapper = styled.div`
     display:flex;

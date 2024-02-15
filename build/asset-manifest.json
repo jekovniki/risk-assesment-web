@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.336b315f.css",
+    "main.js": "/static/js/main.d038aeaa.js",
+    "static/media/risk.png": "/static/media/risk.f915ef0033ed8a482ae2.png",
+    "static/media/overlay-homepage.png": "/static/media/overlay-homepage.20a7ba109e9cde527c79.png",
+    "static/media/color.png": "/static/media/color.6441e63a57ccc5105bad.png",
+    "static/media/RISK-LOGO.svg": "/static/media/RISK-LOGO.0ea508e4330bdf74d2a1d5f2a0e11250.svg",
+    "index.html": "/index.html",
+    "main.336b315f.css.map": "/static/css/main.336b315f.css.map",
+    "main.d038aeaa.js.map": "/static/js/main.d038aeaa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.336b315f.css",
+    "static/js/main.d038aeaa.js"
+  ]
+}
