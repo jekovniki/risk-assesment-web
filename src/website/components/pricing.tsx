@@ -77,7 +77,7 @@ const Pricing = () => {
 const StyledSection = styled.section`
     box-sizing: border-box;
     padding: 2.5rem 1rem;
-    margin: 5rem 0;
+    margin: 5rem 0 0rem;
     background-color: ${mainColors.blue};
     color: ${mainColors.yellow};
     width: 100%;
@@ -106,6 +106,9 @@ const StyledPricingWrapper = styled.div`
     &.marked {
         background-color: ${mainColors.yellow};
         border: 1px solid ${mainColors.yellow};
+        &.MuiCard-root {
+            border: 0px solid transparent;
+        }
     }
     &:hover {
         background-color: ${mainColors.yellow};

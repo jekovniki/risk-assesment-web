@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import Stage from './components/stage';
 import OurServices from './components/our-services';
 import Pricing from './components/pricing';
+import AboutUs from './components/about-us';
 
 import Overlay from "../assets/overlay-homepage.png";
 import OverlayImage from "../assets/risk.png";
@@ -33,7 +33,7 @@ const WebsiteHomepage = () => {
                     <NavigationLink onClick={() => {handleSectionScroll('pricing')}}>
                         Pricing
                     </NavigationLink>
-                    <NavigationLink  onClick={() => {handleSectionScroll('about')}}>
+                    <NavigationLink  onClick={() => {handleSectionScroll('about-us')}}>
                         About Us
                     </NavigationLink>
                     <NavigationLink onClick={() => {handleSectionScroll('contact-us')}}>
@@ -44,6 +44,7 @@ const WebsiteHomepage = () => {
             <Stage />
             <OurServices />
             <Pricing />
+            <AboutUs />
         </StyledWrapper>
     )
 
