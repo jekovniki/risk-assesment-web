@@ -1,3 +1,4 @@
+import WebsiteHomepage from "../../website/homepage"
 
 export interface IRoutes {
     name: string,
@@ -11,7 +12,7 @@ export const routes = [{
     name: "Website",
     key: "website",
     route: "/",
-    component: <>Website</>,
+    component: <WebsiteHomepage />,
     sideNav: false
 }, {
     name: "Auth",
