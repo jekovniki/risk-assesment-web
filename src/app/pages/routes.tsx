@@ -1,3 +1,5 @@
+import Login from "../../platform/authentication/login"
+import Register from "../../platform/authentication/register"
 import WebsiteHomepage from "../../website/homepage"
 
 export interface IRoutes {
@@ -15,11 +17,17 @@ export const routes = [{
     component: <WebsiteHomepage />,
     sideNav: false
 }, {
-    name: "Auth",
-    key: "auth",
-    route: "/auth",
-    component: <>Sign In</>,
-    sideNav: true
+    name: "Login",
+    key: "login",
+    route: "/login",
+    component: <Login />,
+    sideNav: false
+}, {
+    name: "Register",
+    key: "register",
+    route: "/register",
+    component: <Register />,
+    sideNav: false
 }, {
     name: "Homepage",
     key: "home",
