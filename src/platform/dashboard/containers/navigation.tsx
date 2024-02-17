@@ -8,7 +8,7 @@ import { MenuItem } from "../components/menu-item";
 const Navigation = () => {
     const path = useLocation();
     const sideNav = routes.filter(route => route.sideNav === true);
-    
+
     return(
         <StyledWrapper>
             <StyledImage src={logo} alt="Risk Assesment" />

@@ -21,6 +21,8 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-flow: column;
     align-items: center;
+    animation: show-homepage;
+    animation-duration: 1s;
 `;
 
 
