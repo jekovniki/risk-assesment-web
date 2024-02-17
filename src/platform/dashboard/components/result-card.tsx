@@ -84,6 +84,7 @@ const StyledLabel = styled.div`
     font-weight: 300;
     font-size: 13px;
     line-height: 15.6px;
+    text-align:left;
 `;
 
 const StyledValue = styled.div`
@@ -91,6 +92,7 @@ const StyledValue = styled.div`
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 500;
+    text-align:left;
 `;
 
 const StyledWrapperTopLine = styled.div`
