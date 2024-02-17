@@ -71,6 +71,8 @@ const StyledSection = styled.section`
     color: ${mainColors.blue};
     max-width: 1280px;
     width: 100%;
+    animation: show-homepage;
+    animation-duration: 3.6s;
 `;
 
 const StyledText = styled.div``;

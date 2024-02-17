@@ -20,23 +20,23 @@ const WebsiteHomepage = () => {
 
     return (
         <StyledWrapper >
-            <StyledOverlayWrapper>
-                <StyledOverlay src={Overlay} alt="Overlay" />
-                <StyledOverlayImage src={OverlayImage} alt="Risk Assesment image" />
-            </StyledOverlayWrapper>
+                <StyledOverlayWrapper>
+                    <StyledOverlay src={Overlay} alt="Overlay" />
+                    <StyledOverlayImage src={OverlayImage} alt="Risk Assesment image" />
+                </StyledOverlayWrapper>
             <StyledGrid>
                 <StyledLogo src={Logo} alt="Logo" />
                 <Navigation>
-                    <NavigationLink onClick={() => {handleSectionScroll('our-services')}}>
+                    <NavigationLink onClick={() => { handleSectionScroll('our-services') }}>
                         Our Services
                     </NavigationLink>
-                    <NavigationLink onClick={() => {handleSectionScroll('pricing')}}>
+                    <NavigationLink onClick={() => { handleSectionScroll('pricing') }}>
                         Pricing
                     </NavigationLink>
-                    <NavigationLink  onClick={() => {handleSectionScroll('about-us')}}>
+                    <NavigationLink onClick={() => { handleSectionScroll('about-us') }}>
                         About Us
                     </NavigationLink>
-                    <NavigationLink onClick={() => {handleSectionScroll('contact-us')}}>
+                    <NavigationLink onClick={() => { handleSectionScroll('contact-us') }}>
                         Contact Us
                     </NavigationLink>
                 </Navigation>
@@ -96,6 +96,8 @@ const NavigationLink = styled.a`
 const Navigation = styled.div`
     width:100%;
     text-align: right;
+    animation: show-homepage;
+    animation-duration: 1.3s;
 `;
 
 const StyledGrid = styled.div`
@@ -116,6 +118,8 @@ const StyledOverlayWrapper = styled.div`
     left:0;
     width:100%;
     z-index:-9;
+    animation: slide-top-fade;
+    animation-duration: 1s;
 
     img {
         width: 100%;

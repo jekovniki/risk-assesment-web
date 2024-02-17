@@ -50,6 +50,8 @@ const StyledTitle = styled.h1`
     line-height: 6rem;
     font-weight: 100;
     margin-bottom:0;
+    animation: show-homepage;
+    animation-duration: 1.9s;
 `;
 
 const StyledSubtitle = styled.div`
@@ -57,6 +59,8 @@ const StyledSubtitle = styled.div`
     line-height: 1.875rem;
     font-weight: 200;
     margin-top: 5vh;
+    animation: show-homepage;
+    animation-duration: 2.3s;
 `;
 
 const StyledTryItNow = styled.div`
@@ -64,6 +68,8 @@ const StyledTryItNow = styled.div`
     line-height: 1.8rem;
     font-weight: 200;
     margin-top: 10vh;
+    animation: show-homepage;
+    animation-duration: 2.7s;
 `;
 
 const StyledTryWrapper = styled.div`
@@ -78,6 +84,8 @@ const StyledTryWrapper = styled.div`
     padding: .5rem;
     display: flex;
     align-items: center;
+    animation: show-homepage;
+    animation-duration: 3.2s;
 `;
 
 const StyledButton =  styled.a`
