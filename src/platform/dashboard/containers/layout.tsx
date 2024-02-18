@@ -41,9 +41,9 @@ const DefaultLayout = ({ children, title, email }: { children: ReactNode, title:
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem key="profile" onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem key="account" onClick={handleClose}>My account</MenuItem>
+                            <MenuItem key="logout" onClick={handleClose}>Logout</MenuItem>
                         </Menu>
 
                     </StyledDiv>

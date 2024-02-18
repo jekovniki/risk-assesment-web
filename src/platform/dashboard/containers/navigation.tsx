@@ -14,7 +14,7 @@ const Navigation = () => {
             <StyledImage src={logo} alt="Risk Assesment" />
             <StyledNav>
                 {sideNav.map(route => 
-                    <MenuItem title={route.name} icon={route.icon} route={route.route} active={path.pathname === route.route} />
+                    <MenuItem key={route.name} title={route.name} icon={route.icon} route={route.route} active={path.pathname === route.route} />
                 )}
             </StyledNav>
         </StyledWrapper>

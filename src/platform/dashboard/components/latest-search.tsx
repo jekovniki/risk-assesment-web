@@ -26,12 +26,12 @@ export const LatestSearch = ({ input } : { input: ILatestSearchItems[] }) => {
             <StyledContent>
                 { input.length ? input.map(person => {
                     return (
-                    <StyledSearchLine>
+                    <StyledSearchLine key={person.name}>
                         <StyledName>{person.name}</StyledName>
                         <StyledKeyData>
                             { person.keyData.length ? 
                             person.keyData.map(key => {
-                                return <StyledKeyDataOption>
+                                return <StyledKeyDataOption key={key}>
                                     { key }
                                 </StyledKeyDataOption>
                             }) : ""}

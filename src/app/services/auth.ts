@@ -11,9 +11,9 @@ export const signIn = async (credentials: ICredentials) => {
         withCredentials: true
     });
 
-    if (response.status >= 400) {
-        throw response.statusText;
-    }
+    // if (response.status >= 400) {
+    //     throw response.statusText;
+    // }
 
-    return response.data;
+    return response;
 }

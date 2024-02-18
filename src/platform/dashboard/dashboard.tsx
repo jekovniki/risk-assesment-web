@@ -48,7 +48,7 @@ const Dashboard = () => {
                         <WelcomeBox name={firstName} />
                     </Grid>
                     <Grid container padding={2} >
-                        <Grid container xs={12} md={8} lg={9}>
+                        <Grid container item xs={12} md={8} lg={9}>
                             <Grid item xs={12}>
                                 <SmallSearch value="Delyan Peevski" />
                             </Grid>
@@ -63,7 +63,7 @@ const Dashboard = () => {
                                 />
                             </Grid>
                         </Grid>
-                        <Grid container xs={12} md={4} lg={3} pl={6}>
+                        <Grid container item xs={12} md={4} lg={3} pl={6}>
                             <Grid item xs={12} md={11} lg={11}>
                                 <LatestSearch input={latestSearchMock} />
                             </Grid>

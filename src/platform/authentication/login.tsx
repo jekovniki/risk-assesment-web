@@ -30,13 +30,13 @@ const content = {
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
-    const [formError, setFormError] = useState({ email: "", password: ""});
+    const [formError, setFormError] = useState({ email: "", password: "" });
     const [errorMessage, setErrorMessage] = useState("");
     const navigation = useNavigate();
-    const mutation = useMutation((input:ICredentials) => signIn(input));
+    const mutation = useMutation((input: ICredentials) => signIn(input));
     const submitData = async (event: any) => {
         setLoading(!loading)
-        setFormError({ email: "", password: ""});
+        setFormError({ email: "", password: "" });
         event.preventDefault();
         const formData = new FormData(event.target);
         const email = formData.get('email');
@@ -66,13 +66,17 @@ const Login = () => {
             setFormError({ email: "", password: "Invalid input type" });
             return;
         }
-        if ( password.length < 8) {
+        if (password.length < 8) {
             setLoading(false);
             setFormError({ email: "", password: "Password should be at least 8 characters" });
             return;
         }
         const encodedPassword = encode(password);
-        await mutation.mutateAsync({ email, password: encodedPassword});
+        try {
+            await mutation.mutateAsync({ email, password: encodedPassword });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     if (mutation.isLoading && !loading) {
@@ -80,13 +84,14 @@ const Login = () => {
     }
 
     if (mutation.isError && mutation.error) {
-        if (mutation.error && typeof mutation.error === 'object' && "message" in mutation.error) {
-            setErrorMessage(mutation?.error?.message as any);
+        setLoading(false);
+        if (mutation.error instanceof Error) {
+            setErrorMessage(mutation?.error?.message);
         } else {
             setErrorMessage("We couldn't process your request");
         }
     }
-
+    console.log(mutation);
     if (mutation.isSuccess) {
         navigation("/dashboard");
     }
@@ -94,11 +99,11 @@ const Login = () => {
     return (
         <DefaultContainer>
             <AuthForm>
-                <Text>{ content.text }</Text>
-                {errorMessage ? <div color="red">
-                    {errorMessage}
-                </div> : ""}
+                <Text>{content.text}</Text>
                 <StyledForm onSubmit={submitData}>
+                    {errorMessage ? <div color="red">
+                        {errorMessage}
+                    </div> : ""}
                     <TextField
                         label={content.email.label}
                         id="email"
@@ -130,7 +135,7 @@ const Login = () => {
                         type="submit"
                         loadingPosition="end"
                         variant="contained"
-                        style={{paddingTop: '.75rem', paddingBottom: '.75rem'}}
+                        style={{ paddingTop: '.75rem', paddingBottom: '.75rem' }}
                     >
                         {content.login}
                     </LoadingButton>
