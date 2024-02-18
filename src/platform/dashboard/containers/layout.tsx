@@ -1,26 +1,55 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import styled from "@emotion/styled";
-import Grid from "@mui/material/Grid";
+import {Grid, Menu, MenuItem} from "@mui/material";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Navigation from "./navigation";
 
-const DefaultLayout = ({ children, title, email } : { children: ReactNode, title: string, email: string }) => {
-
+const DefaultLayout = ({ children, title, email }: { children: ReactNode, title: string, email: string }) => {
+    const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorElement);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorElement(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorElement(null);
+    };
     return (
         <StyledGrid container>
-            <Grid item  xs={12} md={3} lg={2}>
+            <Grid item xs={12} md={3} lg={2}>
                 <Navigation />
             </Grid>
             <Grid item xs={12} md={9} lg={10}>
                 <StyledTopContainer>
                     <StyledDiv>
-                        <StyledHeader>{ title }</StyledHeader>
+                        <StyledHeader>{title}</StyledHeader>
                     </StyledDiv>
                     <StyledDiv>
-                        { email }
+                        <span
+                            id="basic-button"
+                            aria-controls={open ? "basic-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            onClick={handleClick}
+                            style={{ cursor: "pointer" }}
+                        >{email} <KeyboardArrowDownIcon style={{ marginBottom: "-7px"}}/></span>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorElement}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </Menu>
+
                     </StyledDiv>
                 </StyledTopContainer>
                 <StyledMain>
-                    { children }
+                    {children}
                 </StyledMain>
             </Grid>
         </StyledGrid>
