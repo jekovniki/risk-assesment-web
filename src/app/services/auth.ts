@@ -1,9 +1,13 @@
-import { useQuery } from "react-query";
 import FetchAPI from "../../libraries/fetch";
 import { APP_URL } from "../../utils/constants";
 
-const getUserInfo = async () => {
-    const response = await FetchAPI.get(APP_URL + '/api/v1/users/me', {
+export interface ICredentials {
+    email: string;
+    password: string;
+}
+
+export const signIn = async (credentials: ICredentials) => {
+    const response = await FetchAPI.post(APP_URL + '/api/v1/auth/sign-in', credentials, {
         withCredentials: true
     });
 
@@ -12,8 +16,4 @@ const getUserInfo = async () => {
     }
 
     return response.data;
-}
-
-export const useGetUser = () => {
-    return useQuery('user', getUserInfo);
 }

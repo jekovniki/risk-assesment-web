@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 import DefaultLayout from "./containers/layout";
 import { Grid } from "@mui/material";
@@ -10,9 +11,9 @@ import { useGetUser } from "../../app/services/users";
 import { Loader } from "./components/loader";
 
 const Dashboard = () => {
-    const { isLoading, error, data } = useGetUser();
-    console.log('error:', error);
-    console.log('data:', data);
+    const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
+    const email = data && data.email ? data.email : "";
+    const firstName = data && data.firstName ? data.firstName : "";
     const latestSearchMock = [{
         name: "Delyan Peevski",
         keyData: ["OB", "S", "PEP"]
@@ -39,12 +40,12 @@ const Dashboard = () => {
         imageSrc: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Delyan_Peevski_%2841NS%29.png"
     }
     return (
-        <DefaultLayout title="Dashboard">
+        <DefaultLayout title="Dashboard" email={email}>
             {isLoading ? 
             <Loader /> :
                 <>
                     <Grid container padding={2} paddingBottom={0}>
-                        <WelcomeBox name="Niki" />
+                        <WelcomeBox name={firstName} />
                     </Grid>
                     <Grid container padding={2} >
                         <Grid container xs={12} md={8} lg={9}>

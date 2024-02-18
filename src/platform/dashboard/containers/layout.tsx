@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Grid from "@mui/material/Grid";
 import Navigation from "./navigation";
 
-const DefaultLayout = ({ children, title } : { children: ReactNode, title: string }) => {
+const DefaultLayout = ({ children, title, email } : { children: ReactNode, title: string, email: string }) => {
 
     return (
         <StyledGrid container>
@@ -16,7 +16,7 @@ const DefaultLayout = ({ children, title } : { children: ReactNode, title: strin
                         <StyledHeader>{ title }</StyledHeader>
                     </StyledDiv>
                     <StyledDiv>
-                        nikolay.1990@gmai.com
+                        { email }
                     </StyledDiv>
                 </StyledTopContainer>
                 <StyledMain>
