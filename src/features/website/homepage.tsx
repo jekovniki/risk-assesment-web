@@ -5,9 +5,9 @@ import OurServices from './components/our-services';
 import Pricing from './components/pricing';
 import AboutUs from './components/about-us';
 
-import Overlay from "../assets/overlay-homepage.png";
-import OverlayImage from "../assets/risk.png";
-import Logo from "../assets/RISK-LOGO.svg";
+import Overlay from "../../assets/overlay-homepage.png";
+import OverlayImage from "../../assets/risk.png";
+import Logo from "../../assets/RISK-LOGO.svg";
 
 const WebsiteHomepage = () => {
 

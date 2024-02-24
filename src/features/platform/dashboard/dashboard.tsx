@@ -7,7 +7,7 @@ import { WelcomeBox } from "./components/welcome-box";
 import { SmallSearch } from "./components/small-search";
 import { LatestSearch } from "./components/latest-search";
 import { ResultCard } from "./components/result-card";
-import { useGetUser } from "../../app/services/users";
+import { useGetUser } from "../../../services/users";
 import { Loader } from "./components/loader";
 
 const Dashboard = () => {

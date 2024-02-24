@@ -1,15 +1,15 @@
 import DefaultLayout from "./containers/layout";
-import { useGetUser } from "../../app/services/users";
+import { useGetUser } from "../../../services/users";
 
-const Search = () => {
+const SearchHistory = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
     const email = data && data.email ? data.email : "";
 
     return (
-        <DefaultLayout title="Search" email={email}>
-            Search
+        <DefaultLayout title="Search History" email={email}>
+            Search History
         </DefaultLayout>
     )
 }
 
-export default Search;
+export default SearchHistory;

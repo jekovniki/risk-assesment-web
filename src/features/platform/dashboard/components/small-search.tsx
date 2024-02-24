@@ -1,15 +1,37 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import TuneIcon from '@mui/icons-material/Tune'
 
-export const SmallSearch = ({ value }: { value: string }) => {
+import { useSearchMutation } from "../../../../services/search";
+
+export const SmallSearch = () => {
+    const { loading, formError, errorMessage, submitData, success } = useSearchMutation();
+    const [searchName, setSearchName] = useState('');
+    const defaultSearch = { 
+        search: "", 
+        schema: "", 
+        nationality: "", 
+        country: "",
+        gender: "",
+        name: "",
+        byAlias: false,
+        firstName: "",
+        position: ""
+     };
+
+    const search = () => {
+        submitData({ ...defaultSearch, search: searchName });
+    }
+
+    console.log('success: ', success);
 
     return (
         <StyledWrapper>
-            <div style={{padding: ".5rem"}}>
-                <StyledInput placeholder="Type to search..."/>
+            <div style={{padding: ".5rem", width: "50%"}}>
+                <StyledInput placeholder="Type to search..." onChange={(event) => { setSearchName(event.target.value)}} />
             </div>
             <div style={{padding: ".5rem", display: "flex"}}>
-                <StyledATag>
+                <StyledATag onClick={search}>
                     Perform a Search
                 </StyledATag>
                 <StyledATagConfiguration>

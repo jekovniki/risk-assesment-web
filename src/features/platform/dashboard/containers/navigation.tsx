@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { useLocation } from "react-router-dom";
 
-import logo from '../../../assets/RISK-LOGO.svg';
-import { routes } from "../../../app/pages/routes";
+import logo from '../../../../assets/RISK-LOGO.svg';
+import { routes } from "../../../../app/pages/routes";
 import { MenuItem } from "../components/menu-item";
 
 const Navigation = () => {

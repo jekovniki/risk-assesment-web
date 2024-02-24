@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { mainColors, fonts } from "../../app/theme";
+import { mainColors, fonts } from "../../../app/theme";
 import { Grid, Box, Card } from "@mui/material";
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import PlumbingIcon from '@mui/icons-material/Plumbing';

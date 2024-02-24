@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import FetchAPI from "../../libraries/fetch";
-import { APP_URL } from "../../utils/constants";
+import FetchAPI from "../libraries/fetch";
+import { APP_URL } from "../utils/constants";
 
 const getUserInfo = async () => {
     const response = await FetchAPI.get(APP_URL + '/api/v1/users/me', {

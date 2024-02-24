@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import {Grid, Menu, MenuItem} from "@mui/material";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -7,6 +8,7 @@ import Navigation from "./navigation";
 const DefaultLayout = ({ children, title, email }: { children: ReactNode, title: string, email: string }) => {
     const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorElement);
+    const navigation = useNavigate();
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorElement(event.currentTarget);
     };
@@ -41,9 +43,8 @@ const DefaultLayout = ({ children, title, email }: { children: ReactNode, title:
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem key="profile" onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem key="account" onClick={handleClose}>My account</MenuItem>
-                            <MenuItem key="logout" onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem key="profile" onClick={() => {navigation("/profile")}}>Profile</MenuItem>
+                            <MenuItem key="logout" onClick={() => {navigation("/")}}>Logout</MenuItem>
                         </Menu>
 
                     </StyledDiv>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { mainColors, fonts } from "../../app/theme";
+import { mainColors, fonts } from "../../../app/theme";
 import { Box, Grid, Card } from "@mui/material";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 

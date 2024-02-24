@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { mainColors } from "../../app/theme"
+import { mainColors } from "../../../app/theme"
 
 const content = {
     title: <>Your <strong>Safety</strong>, Our <strong>Priority</strong></>,

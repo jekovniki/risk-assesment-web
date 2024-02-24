@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
 
-import Logo from "../../../assets/RISK-LOGO.svg";
+import Logo from "../../../../assets/RISK-LOGO.svg";
 import { Image } from "../components/image";
 
 

@@ -4,13 +4,13 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import RestoreIcon from '@mui/icons-material/Restore';
 
-import Login from "../../platform/authentication/login"
-import Register from "../../platform/authentication/register"
-import Dashboard from "../../platform/dashboard/dashboard"
-import WebsiteHomepage from "../../website/homepage"
-import Search from "../../platform/dashboard/search"
-import Profile from "../../platform/dashboard/profile"
-import SearchHistory from "../../platform/dashboard/search-history";
+import Login from "../../features/platform/authentication/login"
+import Register from "../../features/platform/authentication/register"
+import Dashboard from "../../features/platform/dashboard/dashboard"
+import WebsiteHomepage from "../../features/website/homepage"
+import Search from "../../features/platform/dashboard/search"
+import Profile from "../../features/platform/dashboard/profile"
+import SearchHistory from "../../features/platform/dashboard/search-history";
 
 export interface IRoutes {
     name: string,

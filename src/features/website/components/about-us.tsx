@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { mainColors, fonts } from "../../app/theme";
+import { mainColors, fonts } from "../../../app/theme";
 import { Box, Grid } from "@mui/material";
-import AboutUsImage from '../../assets/about-us.png';
+import AboutUsImage from '../../../assets/about-us.png';
 
 const content = {
     title: "About us",

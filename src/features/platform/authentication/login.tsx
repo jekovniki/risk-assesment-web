@@ -8,7 +8,7 @@ import { TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import LoginIcon from '@mui/icons-material/Login';
 
-import { ICredentials, signIn } from "../../app/services/auth";
+import { ICredentials, signIn, useLoginMutation } from "../../../services/auth";
 
 import DefaultContainer from "./containers/default";
 import AuthForm from "./containers/form";
@@ -29,79 +29,22 @@ const content = {
 }
 
 const Login = () => {
-    const [loading, setLoading] = useState(false);
-    const [formError, setFormError] = useState({ email: "", password: "" });
-    const [errorMessage, setErrorMessage] = useState("");
-    const navigation = useNavigate();
-    const mutation = useMutation((input: ICredentials) => signIn(input));
-    const submitData = async (event: any) => {
-        setLoading(!loading)
-        setFormError({ email: "", password: "" });
+    const { loading, formError, errorMessage, submitData } = useLoginMutation();
+
+    const signIn = (event: any) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const email = formData.get('email');
-        const password = formData.get('password');
-        if (!email) {
-            setLoading(false);
-            setFormError({ email: "Email field is mandatory", password: "" });
-            return;
-        }
-        if (!password) {
-            setLoading(false);
-            setFormError({ email: "", password: "Password field is mandatory" });
-            return;
-        }
-        if (!email) {
-            setLoading(false);
-            setFormError({ email: "Email field is mandatory", password: "" });
-            return;
-        }
-        if (typeof email !== 'string') {
-            setLoading(false);
-            setFormError({ email: "Invalid input type", password: "" });
-            return;
-        }
-        if (typeof password !== 'string') {
-            setLoading(false);
-            setFormError({ email: "", password: "Invalid input type" });
-            return;
-        }
-        if (password.length < 8) {
-            setLoading(false);
-            setFormError({ email: "", password: "Password should be at least 8 characters" });
-            return;
-        }
-        const encodedPassword = encode(password);
-        try {
-            await mutation.mutateAsync({ email, password: encodedPassword });
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    if (mutation.isLoading && !loading) {
-        setLoading(true);
-    }
-
-    if (mutation.isError && mutation.error) {
-        setLoading(false);
-        if (mutation.error instanceof Error) {
-            setErrorMessage(mutation?.error?.message);
-        } else {
-            setErrorMessage("We couldn't process your request");
-        }
-    }
-    console.log(mutation);
-    if (mutation.isSuccess) {
-        navigation("/dashboard");
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
+        submitData({ email, password})
     }
 
     return (
         <DefaultContainer>
             <AuthForm>
                 <Text>{content.text}</Text>
-                <StyledForm onSubmit={submitData}>
-                    {errorMessage ? <div color="red">
+                <StyledForm onSubmit={signIn}>
+                    {errorMessage ? <div style={{color: "red"}}>
                         {errorMessage}
                     </div> : ""}
                     <TextField
