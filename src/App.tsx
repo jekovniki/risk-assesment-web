@@ -1,7 +1,7 @@
 import './App.css'
 import { Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { IRoutes, routes } from './app/pages/routes';
+import { IRoutes, routes } from './pages/routes';
 
 function App() {
   const queryClient = new QueryClient();

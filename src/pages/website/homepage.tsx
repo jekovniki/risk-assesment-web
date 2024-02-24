@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import Stage from './components/stage';
-import OurServices from './components/our-services';
-import Pricing from './components/pricing';
-import AboutUs from './components/about-us';
+import Stage from '../../features/website/components/stage';
+import OurServices from '../../features/website/components/our-services';
+import Pricing from '../../features/website/components/pricing';
+import AboutUs from '../../features/website/components/about-us';
 
 import Overlay from "../../assets/overlay-homepage.png";
 import OverlayImage from "../../assets/risk.png";
