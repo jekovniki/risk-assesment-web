@@ -20,11 +20,13 @@ export const ResultCard = ({
     citizenship
 }: IResultCard) => {
 
+    const defaultImage = "https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1060&t=st=1710364595~exp=1710365195~hmac=3743ec70412b859982eb6972b7a98ccddae9289eceff59f1ecb5e5e8ea369d16";
+    
     return (
         <StyledWrapper>
             <Grid container>
                 <Grid item xs={2} lg={3} xl={2}>
-                    <StyledImage src={imageSrc} alt={name} />
+                    <StyledImage src={imageSrc ? imageSrc : defaultImage} alt={name} />
                 </Grid>
                 <Grid item xs={10} lg={9} xl={10} pl={2} style={{
                     display: "flex",

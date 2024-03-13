@@ -51,7 +51,6 @@ function CustomSearchBoxDetailed(props: UseSearchBoxProps | any) {
                             labelId="entity-label"
                             key="entity"
                             value={entities}
-                            disabled={true}
                             id="entity"
                             name="entity"
                             label="Entity type"
@@ -71,7 +70,6 @@ function CustomSearchBoxDetailed(props: UseSearchBoxProps | any) {
                             key="citizenship"
                             value={citizenship}
                             id="citizenship"
-                            disabled={true}
                             name="citizenship"
                             label="Select Citizenship"
                             onChange={(event) => { setCitizenship(event.target.value) }}

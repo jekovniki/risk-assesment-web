@@ -35,13 +35,7 @@ const NewSearch = () => {
                                 <StyledCard>
                                     <Grid container gap={0}>
                                         <Grid item xs={12}>
-                                            <CustomSearchBoxDetailed
-                                                placeholder="Algolia search"
-                                                loadingIconComponent={({ classNames }: { classNames: any }) => (
-                                                    <div className={classNames.loadingIcon}>Loading</div>
-                                                )}
-                                            />
-
+                                            <CustomSearchBoxDetailed />
                                         </Grid>
                                     </Grid>
 
@@ -50,18 +44,20 @@ const NewSearch = () => {
                         </Grid>
                         <Grid container>
                             <Grid item xs={12}>
-                                <InfiniteHits hitComponent={({ hit }: { hit: any }) => {
-                                    console.log('hit : ', hit);
-                                    return (<Grid item xs={12} mt={2} mr={2}>
-                                        <ResultCard
-                                            name={hit.caption}
-                                            location={hit.properties?.country?.[0] ?? ""}
-                                            dateOfBirth={hit.firstSeen}
-                                            gender={hit.properties?.gender?.[0] ?? ""}
-                                            citizenship={hit.properties?.country?.[0] ?? ""}
-                                        />
-                                    </Grid>) as any;
-                                }} />
+                                <StyledWrapper>
+                                    <InfiniteHits hitComponent={({ hit }: { hit: any }) =>
+                                        <Grid item xs={11.4} mt={2} ml={-2} mr={2}>
+                                            <ResultCard
+                                                name={hit.caption}
+                                                location={hit.properties?.country?.[0] ?? ""}
+                                                dateOfBirth={hit.firstSeen}
+                                                gender={hit.properties?.gender?.[0] ?? ""}
+                                                imageSrc={hit.properties?.image?.[0]}
+                                                citizenship={hit.properties?.country?.[0] ?? ""}
+                                            />
+                                        </Grid>
+                                    } />
+                                </StyledWrapper>
                             </Grid>
                         </Grid>
                     </InstantSearch>
@@ -71,6 +67,11 @@ const NewSearch = () => {
     )
 }
 
+const StyledWrapper = styled.div`
+    .ais-InfiniteHits > button {
+        display: none;
+    }
+`;
 
 const StyledCard = styled.div`
     padding: 1.8rem;
