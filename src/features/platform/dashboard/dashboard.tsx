@@ -9,27 +9,14 @@ import { LatestSearch } from "./components/latest-search";
 import { ResultCard } from "./components/result-card";
 import { useGetUser } from "../../../services/users";
 import { Loader } from "./components/loader";
+import { useSearchHisory } from "./api/use-search-history";
 
 const Dashboard = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
     const email = data && data.email ? data.email : "";
     const firstName = data && data.firstName ? data.firstName : "";
-    const latestSearchMock = [{
-        name: "Delyan Peevski",
-        keyData: ["OB", "S", "PEP"]
-    }, {
-        name: "Boyko Borissov",
-        keyData: ["S", "PEP"]
-    }, {
-        name: "Ahmed Dogan",
-        keyData: ["S", "PEP"]
-    }, {
-        name: "Toni Storaro",
-        keyData: ["OB"]
-    }, {
-        name: "Rumen Radev",
-        keyData: ["OB", "PEP"]
-    }]
+    const searchHistory = useSearchHisory();
+    const latestSearch = searchHistory.data?.data as any[] || [];
 
     const resultCardMock = {
         name: "Delyan Slavchev Peevski",
@@ -65,7 +52,12 @@ const Dashboard = () => {
                         </Grid>
                         <Grid container item xs={12} md={4} lg={3} pl={6}>
                             <Grid item xs={12} md={11} lg={11}>
-                                <LatestSearch input={latestSearchMock} />
+                                <LatestSearch input={latestSearch.map(history => {
+                                    return {
+                                        name: history.search,
+                                        keyData: ['S']
+                                    }
+                                })} loading={searchHistory.isLoading}/>
                             </Grid>
                         </Grid>
                     </Grid>

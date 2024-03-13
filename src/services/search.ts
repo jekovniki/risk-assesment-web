@@ -12,14 +12,35 @@ interface ISearch {
     nationality: string;
     country: string;
     gender: string;
-    name: string;
     byAlias: boolean;
-    firstName: string;
-    position: string;
 }
 
 export const search = async (input: ISearch) => {
     const response = await FetchAPI.post(APP_URL + '/api/v1/search', input, {
+        withCredentials: true
+    });
+
+    return response;
+}
+
+export const getSearchHistory = async () => {
+    const response = await FetchAPI.get(APP_URL + '/api/v1/search/history', {
+        withCredentials: true
+    });
+
+    return response;
+}
+
+export const getSearchOptionsGender = async () => {
+    const response = await FetchAPI.get(APP_URL + '/api/v1/search-options/genders', {
+        withCredentials: true
+    });
+
+    return response;
+}
+
+export const getSearchOptionsEntities = async () => {
+    const response = await FetchAPI.get(APP_URL + '/api/v1/search-options/entities', {
         withCredentials: true
     });
 
