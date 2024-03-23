@@ -52,6 +52,33 @@ const content = {
         }],
         required: "Required"
     },
+    plan: {
+        label: "Plan",
+        options:[{
+            key: 'free',
+            value: "Free",
+            label: "Free",
+        }, {
+            key: 'standard',
+            value: 'Standard',
+            label: 'Standard'
+        }, {
+            key: 'pro',
+            value: 'Pro',
+            label: 'Pro'
+        }],
+        required: "Required",
+        description: [{
+            key: 'Free',
+            value: 'Free plan is suitable for people that want to try the system. You have limited access to the features (no company) that we offer and you have the possibility to do 3 reports per day.'
+        }, {
+            key: 'Standard',
+            value: 'Standard plan is suitable for small to medium sized companies. You have full access to the features that we offer and you have the possibility to do 20 reports per day.'
+        }, {
+            key: 'Pro',
+            value: 'Pro plan is suitable for customers who need to do multiple complience checks per day - banks, financial institutions and etc. You have full access to the features that we offer and you have the possibility to do unlimited reports per day.',
+        }]
+    },
     register: "Register",
     login: <>Fill in the form in order to register. Already have an account? <a href="/login">Sign in</a></>
 }
@@ -59,6 +86,7 @@ const content = {
 
 const Register = () => {
     const [gender, setGender] = useState("");
+    const [plan, setPlan] = useState(content.plan.options[0].value);
     const { loading, formError, errorMessage, submitData } = useRegistrationMutation();
 
     const signUp = (event: any) => {
@@ -71,7 +99,9 @@ const Register = () => {
         const password = formData.get('password') as string;
         const repeatPassword = formData.get('repeat-password') as string;
         const gender = formData.get('gender') as string;
-        submitData({ email, password, repeatPassword, gender, firstName, lastName, dateOfBirth});
+        const plan = formData.get('plan') as string;
+
+        submitData({ email, password, repeatPassword, gender, plan, firstName, lastName, dateOfBirth});
     }
 
     return (
@@ -151,6 +181,26 @@ const Register = () => {
                         error={formError.repeatPassword ? true : false}
                         helperText={formError.repeatPassword}
                     />
+                    <FormControl required sx={{ m: 1, minWidth: 120 }} style={{marginBottom: '1rem'}}>
+                        <InputLabel id="plan-label">{ content.plan.label }</InputLabel>
+                        <Select
+                            labelId="plan-label"
+                            id="plan"
+                            name="plan"
+                            value={plan}
+                            label="Plan *"
+                            disabled={loading}
+                            error={formError.plan ? true : false}
+                            onChange={(event) => setPlan(event.target.value)}
+                        >
+                            {content.plan.options.map((option) => 
+                                <MenuItem key={option.key} value={option.value}>{option.label}</MenuItem>
+                            )}
+                        </Select>
+                    </FormControl>
+                    <StyledPlanBox>
+                        { content.plan.description.find(description => description.key === plan ? description.value : null)?.value }
+                    </StyledPlanBox>
                     <LoadingButton
                         endIcon={<AppRegistrationIcon />}
                         loading={loading}
@@ -179,6 +229,12 @@ const StyledForm = styled.form`
         margin-top:0;
         margin-bottom: 2rem;
     }
+`;
+
+const StyledPlanBox = styled.div`
+    margin-top:0;
+    color: #1a1a1a;
+    text-align: left;
 `;
 
 export default Register;

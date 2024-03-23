@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Loader } from "./loader";
+import { Loader } from "../../common/components/loader";
 
 interface ILatestSearchItems {
     name: string;
     keyData: string[]
-
 }
 
 export const LatestSearch = ({ input, loading } : { input: ILatestSearchItems[], loading: boolean }) => {
@@ -26,7 +25,7 @@ export const LatestSearch = ({ input, loading } : { input: ILatestSearchItems[],
             </StyledTopWrapper>
             <StyledContent>
                 { loading ? <Loader /> : 
-                    input.length ? input.map(person => {
+                    input.length ? input.slice(-5).map(person => {
                     return (
                     <StyledSearchLine key={person.name}>
                         <StyledName>{person.name}</StyledName>

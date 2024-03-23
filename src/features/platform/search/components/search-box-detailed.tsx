@@ -1,27 +1,25 @@
 import styled from '@emotion/styled';
 import { useState, useRef } from 'react';
-import {
-    useInstantSearch,
-    useSearchBox,
-    UseSearchBoxProps
-} from 'react-instantsearch';
 import { Grid } from "@mui/material";
 import { TextField, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 import { LoadingButton } from '@mui/lab';
-import { ENTITIES_OPTIONS } from '../../platform/dashboard/data/search-options';
-import { COUNTRIES } from '../../../utils/countries';
+import { ENTITIES_OPTIONS } from '../../common/data/search-options';
+import { COUNTRIES } from '../../../../utils/countries';
 
-function CustomSearchBoxDetailed(props: UseSearchBoxProps | any) {
+function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
     const [entities, setEntities] = useState("");
-    const { query, refine } = useSearchBox(props);
-    const { status } = useInstantSearch();
-    const [inputValue, setInputValue] = useState(query);
+    const [inputValue, setInputValue] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
     const [citizenship, setCitizenship] = useState("");
+
     function setQuery(newQuery: string) {
         setInputValue(newQuery);
+    }
 
-        // refine(newQuery);
+    const handleClick = () => {
+        onSubmit({
+            search: inputValue
+        })
     }
 
     return (
@@ -87,7 +85,7 @@ function CustomSearchBoxDetailed(props: UseSearchBoxProps | any) {
                 type="submit"
                 variant="contained"
                 style={{ paddingTop: '.75rem', paddingBottom: '.75rem', marginTop: '1rem' }}
-                onClick={() => { refine(inputValue) }}
+                onClick={handleClick}
             >
                 Search
             </LoadingButton>

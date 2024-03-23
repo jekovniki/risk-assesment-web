@@ -16,6 +16,7 @@ export interface IRegistration extends ICredentials {
     dateOfBirth: string;
     firstName: string;
     lastName: string;
+    plan: string;
 }
 
 export const signIn = async (credentials: ICredentials) => {
@@ -95,14 +96,15 @@ export const useRegistrationMutation = () => {
         gender: "",
         dateOfBirth: "",
         firstName: "",
-        lastName: ""
+        lastName: "",
+        plan: ""
      }
     const [formError, setFormError] = useState<IRegistration>(defaultRegistration);
     const [errorMessage, setErrorMessage] = useState("");
     const navigation = useNavigate();
     const mutation = useMutation((input: IRegistration) => signUp(input));
 
-    const submitData = async (credentials: IRegistration) => {
+    const submitData = async (credentials: any) => {
         setLoading(true);
         setFormError(defaultRegistration);
 
@@ -124,6 +126,11 @@ export const useRegistrationMutation = () => {
         if (!credentials.gender) {
             setLoading(false);
             setFormError({ ...defaultRegistration, gender: "Gender field is mandatory"});
+            return;
+        }
+        if (!credentials.plan) {
+            setLoading(false);
+            setFormError({ ...defaultRegistration, plan: "Plan field is mandatory"});
             return;
         }
         if (!credentials.dateOfBirth) {

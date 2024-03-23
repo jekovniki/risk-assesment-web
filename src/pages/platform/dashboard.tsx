@@ -1,15 +1,12 @@
-import styled from "@emotion/styled";
-import { useState } from "react";
-
-import DefaultLayout from "./containers/layout";
 import { Grid } from "@mui/material";
-import { WelcomeBox } from "./components/welcome-box";
-import { SmallSearch } from "./components/small-search";
-import { LatestSearch } from "./components/latest-search";
-import { ResultCard } from "./components/result-card";
-import { useGetUser } from "../../../services/users";
-import { Loader } from "./components/loader";
-import { useSearchHisory } from "./api/use-search-history";
+import { useSearchHisory } from "../../features/platform/search/api/use-search-history";
+import { useGetUser } from "../../services/users";
+import DefaultLayout from "../../features/platform/common/containers/layout";
+import { Loader } from "../../features/platform/common/components/loader";
+import { WelcomeBox } from "../../features/platform/common/components/welcome-box";
+import { SmallSearch } from "../../features/platform/search/components/small-search";
+import { ResultCard } from "../../features/platform/common/components/result-card";
+import { LatestSearch } from "../../features/platform/search/components/latest-search";
 
 const Dashboard = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
@@ -18,14 +15,6 @@ const Dashboard = () => {
     const searchHistory = useSearchHisory();
     const latestSearch = searchHistory.data?.data as any[] || [];
 
-    const resultCardMock = {
-        name: "Delyan Slavchev Peevski",
-        citizenship: "Bulgarian",
-        locaiton: "Sofia, Bulgaria",
-        gender: "Male",
-        dateOfBirth: "27 July, 1980",
-        imageSrc: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Delyan_Peevski_%2841NS%29.png"
-    }
     return (
         <DefaultLayout title="Dashboard" email={email}>
             {isLoading ? 
@@ -40,14 +29,6 @@ const Dashboard = () => {
                                 <SmallSearch value="Delyan Peevski" />
                             </Grid>
                             <Grid item xs={12} mt={2} mr={2}>
-                                <ResultCard
-                                    name={resultCardMock.name}
-                                    location={resultCardMock.locaiton}
-                                    dateOfBirth={resultCardMock.dateOfBirth}
-                                    gender={resultCardMock.gender}
-                                    imageSrc={resultCardMock.imageSrc}
-                                    citizenship={resultCardMock.citizenship}
-                                />
                             </Grid>
                         </Grid>
                         <Grid container item xs={12} md={4} lg={3} pl={6}>
@@ -55,7 +36,7 @@ const Dashboard = () => {
                                 <LatestSearch input={latestSearch.map(history => {
                                     return {
                                         name: history.search,
-                                        keyData: ['S']
+                                        keyData: ['Open sanctions']
                                     }
                                 })} loading={searchHistory.isLoading}/>
                             </Grid>

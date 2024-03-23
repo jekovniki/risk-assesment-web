@@ -6,12 +6,12 @@ import RestoreIcon from '@mui/icons-material/Restore';
 
 import Login from "../features/platform/authentication/login"
 import Register from "../features/platform/authentication/register"
-import Dashboard from "../features/platform/dashboard/dashboard"
-import WebsiteHomepage from "./website/homepage"
-import SearchResult from "../features/platform/dashboard/search-result"
-import Profile from "../features/platform/dashboard/profile"
-import SearchHistory from "../features/platform/dashboard/search-history";
-import NewSearch from "../features/platform/dashboard/new-search";
+import Dashboard from "./platform/dashboard";
+import WebsiteHomepage from "./website/homepage";
+import SearchResult from "./platform/search-result";
+import Profile from "./platform/profile";
+import SearchHistory from "./platform/search-history";
+import NewSearch from "./platform/new-search";
 
 export interface IRoutes {
     name: string,

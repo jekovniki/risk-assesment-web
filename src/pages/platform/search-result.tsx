@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 
-import DefaultLayout from "./containers/layout";
-import { useGetUser } from "../../../services/users";
-import { Loader } from "./components/loader";
-
+import DefaultLayout from "../../features/platform/common/containers/layout";
+import { useGetUser } from "../../services/users";
+import { Loader } from "../../features/platform/common/components/loader";
 const SearchResult = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
     const email = data && data.email ? data.email : "";
