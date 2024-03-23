@@ -6,7 +6,7 @@ import { useSearch } from "../../features/platform/search/api/use-search";
 import DefaultLayout from "../../features/platform/common/containers/layout";
 import { Loader } from "../../features/platform/common/components/loader";
 import CustomSearchBoxDetailed from "../../features/platform/search/components/search-box-detailed";
-import { ResultCard } from "../../features/platform/common/components/result-card";
+import { ResultCard } from "../../features/platform/search/container/result-card";
 import StatisticsBox from "../../features/platform/search/container/statistics-box";
 
 const NewSearch = () => {
@@ -75,7 +75,7 @@ const NewSearch = () => {
                     <Grid container>
                         <Grid item xs={12}>
                             <StyledWrapper>
-                                    <Grid item xs={11.4} mt={2} ml={-2} mr={2}>
+                                    <Grid item xs={11.4}>
                                         { 
                                         search.isLoading ? <Loader /> : result && result?.hits?.length ? 
                                         result.hits.map((item: Record<string, any>) => 

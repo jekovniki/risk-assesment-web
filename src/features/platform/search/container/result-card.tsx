@@ -12,12 +12,12 @@ interface IResultCard {
 }
 
 export const ResultCard = ({
-    imageSrc,
-    name,
-    dateOfBirth,
-    location,
-    gender,
-    citizenship
+    imageSrc = "",
+    name = "",
+    dateOfBirth = "",
+    location = "",
+    gender = "",
+    citizenship = ""
 }: IResultCard) => {
 
     const defaultImage = "https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1060&t=st=1710364595~exp=1710365195~hmac=3743ec70412b859982eb6972b7a98ccddae9289eceff59f1ecb5e5e8ea369d16";
@@ -135,13 +135,6 @@ const StyledWrapper = styled.div`
     padding: 1.5rem;
     width:100%;
     height: 183px;
+    margin-bottom: 1rem;
+    margin-left: 1.1rem;
 `;
-
-ResultCard.defaultProps = {
-    imageSrc: "",
-    name: "",
-    dateOfBirth: "",
-    location: "",
-    gender: "",
-    citizenship: ""
-}

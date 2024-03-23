@@ -5,7 +5,7 @@ import DefaultLayout from "../../features/platform/common/containers/layout";
 import { Loader } from "../../features/platform/common/components/loader";
 import { WelcomeBox } from "../../features/platform/common/components/welcome-box";
 import { SmallSearch } from "../../features/platform/search/components/small-search";
-import { ResultCard } from "../../features/platform/common/components/result-card";
+import { ResultCard } from "../../features/platform/search/container/result-card";
 import { LatestSearch } from "../../features/platform/search/components/latest-search";
 
 const Dashboard = () => {
