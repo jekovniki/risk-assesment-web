@@ -7,6 +7,7 @@ import DefaultLayout from "../../features/platform/common/containers/layout";
 import { Loader } from "../../features/platform/common/components/loader";
 import CustomSearchBoxDetailed from "../../features/platform/search/components/search-box-detailed";
 import { ResultCard } from "../../features/platform/common/components/result-card";
+import StatisticsBox from "../../features/platform/search/container/statistics-box";
 
 const NewSearch = () => {
     const { isLoading, data }: { isLoading: boolean, error: any, data: any } = useGetUser();
@@ -34,17 +35,32 @@ const NewSearch = () => {
         }
     }
 
+    const group = [{
+        text: 'Unresolved',
+        value: 148
+    }, {
+        text: 'Positive',
+        value: "0"
+    }, {
+        text: 'Possible',
+        value: "0"
+    }, {
+        text: "False",
+        value: 2
+    }, {
+        text: 'Unspecified',
+        value: "0"
+    }]
+
     return (
         <DefaultLayout title="New Search" email={email}>
             {isLoading ? <Loader /> :
                 <>
                     <Grid container padding={2} color="rgba(68, 83, 114, 1)">
                         <Grid container item xs={12} md={5} lg={4}>
-                            <StyledCard>
-                                <StyledGroups>
-                                    Group
-                                </StyledGroups>
-                            </StyledCard>
+                            <StatisticsBox title="Group" items={group} />
+                            <StatisticsBox title="Match Name Type" items={[]} />
+                            <StatisticsBox title="Gender" items={[]} />
                         </Grid>
                         <Grid container item xs={12} md={7} lg={8}>
                             <StyledCard>
@@ -60,7 +76,8 @@ const NewSearch = () => {
                         <Grid item xs={12}>
                             <StyledWrapper>
                                     <Grid item xs={11.4} mt={2} ml={-2} mr={2}>
-                                        { result && result?.hits?.length ? 
+                                        { 
+                                        search.isLoading ? <Loader /> : result && result?.hits?.length ? 
                                         result.hits.map((item: Record<string, any>) => 
                                             <ResultCard
                                                 key={item.caption}
@@ -94,10 +111,6 @@ const StyledCard = styled.div`
     background-color: #fff;
     width: 100%;
     border-radius: 3px;
-`;
-
-const StyledGroups = styled.div`
-    text-align: left;
 `;
 
 export default NewSearch;
