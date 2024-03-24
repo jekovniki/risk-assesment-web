@@ -1,80 +1,28 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 import DefaultLayout from "../../features/platform/common/containers/layout";
 import { useGetUser } from "../../services/users";
 import { Loader } from "../../features/platform/common/components/loader";
+import { ResultCard } from "../../features/platform/search/container/result-card";
+
 const SearchResult = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
     const email = data && data.email ? data.email : "";
-
+    const location = useLocation();
+    
     return (
-        <DefaultLayout title="Search Result" email={email}>
+        <DefaultLayout title={"Search Result" + ": " + location.state.data.caption} email={email}>
             { isLoading ? <Loader /> :
-            <>
-                <Grid container padding={2} color="rgba(68, 83, 114, 1)">
-                    <Grid container item xs={12}>
-                        <StyledCard>
-                            <StyledResultOverview>
-                                <StyledResultBox>
-                                    Name <strong>"Delyan Peevski"</strong>
-                                </StyledResultBox>
-                                <StyledResultBox>
-                                    Place of birth <strong>"Silistra"</strong>
-                                </StyledResultBox>
-                                <StyledResultBox>
-                                    Date of Birth <strong>"1975"</strong>
-                                </StyledResultBox>
-                                <StyledResultBox>
-                                    Case Id <strong>"b4c44g1020-t4020-n3330910"</strong>
-                                </StyledResultBox>
-                            </StyledResultOverview>
-                        </StyledCard>
-                    </Grid>
-                    <Grid container item xs={12} md={5} lg={3}>
-                        <StyledCard>
-                            <StyledGroups>
-                                Groups<br/><br/>
-                                <strong>Unresolved (<span style={{color: "red"}}>148</span>)</strong><br/>
-                                <strong>Positive (0)</strong><br/>
-                                <strong>Possible (0)</strong><br/>
-                                <strong>False (<span style={{color: "red"}}>2</span>)</strong><br/>
-                                <strong>Unspecified (0)</strong>
-                            </StyledGroups>
-                        </StyledCard>
-                    </Grid>
-                    <Grid container item xs={12} md={7} lg={9}>
-                        <StyledCard>
-                            <div style={{ marginBottom: ".5rem" }}>Groups</div>
-                        </StyledCard>
-                    </Grid>
+            <Grid container gap={3} mt={2}>
+                <Grid item xs={11.4}>
+                    <ResultCard key={location.state.data.caption} data={location.state.data} isOpen={true} />
                 </Grid>
-            </>
+            </Grid>
             }
         </DefaultLayout>
     )
 }
-
-const StyledResultOverview = styled.div`
-    display: flex;
-    align-items: start;
-`;
-
-const StyledResultBox = styled.div`
-    margin-right: 2rem;
-`;
-
-const StyledGroups = styled.div`
-    text-align: left;
-`;
-
-const StyledCard = styled.div`
-    padding: 1.8rem;
-    margin: .5rem;
-    background-color: #fff;
-    width: 100%;
-    border-radius: 3px;
-`;
-
 
 export default SearchResult;

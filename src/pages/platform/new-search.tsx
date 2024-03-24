@@ -81,12 +81,8 @@ const NewSearch = () => {
                                         result.hits.map((item: Record<string, any>) => 
                                             <ResultCard
                                                 key={item.caption}
-                                                name={item.caption}
-                                                location={item?.properties?.address?.[0] ?? ""}
-                                                dateOfBirth={item?.properties?.birthDate?.[0] ?? ""}
-                                                gender={item?.properties?.gender?.[0] ?? ""}
-                                                imageSrc={""}
-                                                citizenship={item?.properties?.nationality?.[0] ?? ""}
+                                                data={item}
+                                                isOpen={false}
                                         />)
                                         : ""}
                                     </Grid>

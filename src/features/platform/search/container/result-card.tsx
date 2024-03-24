@@ -1,27 +1,27 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useNavigate } from "react-router-dom";
+import { COUNTRY_FLAGS } from "../../../../utils/countries";
+import ResolveCaseIconForm from "./resolve-case-icon-form";
 
-interface IResultCard {
-    imageSrc: string;
-    name: string;
-    dateOfBirth: string;
-    location: string;
-    gender: string;
-    citizenship: string;
-}
-
-export const ResultCard = ({
-    imageSrc = "",
-    name = "",
-    dateOfBirth = "",
-    location = "",
-    gender = "",
-    citizenship = ""
-}: IResultCard) => {
-
+export const ResultCard = ({ data, isOpen = false }: { data: Record<string, any>, isOpen: boolean }) => {
+    if (!data) {
+        return "";
+    }
+    const navigate = useNavigate();
+    const imageSrc = data.image;
+    const name = data.caption;
+    const dateOfBirth = data.properties.birthDate?.[0] || '';
+    const placeOfBirth = data.properties.birthPlace?.[0] || '';
+    const gender = data.properties.gender?.[0] || '';
+    const citizenship = data.properties.nationality || [];
     const defaultImage = "https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1060&t=st=1710364595~exp=1710365195~hmac=3743ec70412b859982eb6972b7a98ccddae9289eceff59f1ecb5e5e8ea369d16";
-    
+
+    const handleGoToPepPage = () => {
+        navigate('/search-result', { state: { data } });
+    }
+
     return (
         <StyledWrapper>
             <Grid container>
@@ -36,10 +36,15 @@ export const ResultCard = ({
                     alignItems: "center"
                 }}>
                     <StyledWrapperTopLine>
-                        <StyledName>{ name }</StyledName>
-                        <StyledClose>
-                            <ArrowForwardIcon />
-                        </StyledClose>
+                        <StyledName>{name}</StyledName>
+                        {isOpen ?
+                            <StyledClose className="left">
+                                <ResolveCaseIconForm id={data?.id} />
+                            </StyledClose> :
+                            <StyledClose onClick={handleGoToPepPage}>
+                                <ArrowForwardIcon />
+                            </StyledClose>}
+
                     </StyledWrapperTopLine>
                     <Grid container pt={12}>
                         <Grid item xs={6} md={4} lg={3}>
@@ -47,7 +52,7 @@ export const ResultCard = ({
                                 Date of Birth
                             </StyledLabel>
                             <StyledValue>
-                                { dateOfBirth }
+                                {dateOfBirth}
                             </StyledValue>
                         </Grid>
                         <Grid item xs={6} md={4} lg={3}>
@@ -55,7 +60,7 @@ export const ResultCard = ({
                                 Place of Birth
                             </StyledLabel>
                             <StyledValue>
-                                { location }
+                                {placeOfBirth}
                             </StyledValue>
                         </Grid>
                         <Grid item xs={6} md={4} lg={3}>
@@ -63,15 +68,22 @@ export const ResultCard = ({
                                 Gender
                             </StyledLabel>
                             <StyledValue>
-                                { gender }
+                                {gender}
                             </StyledValue>
                         </Grid>
                         <Grid item xs={6} md={4} lg={3}>
                             <StyledLabel>
                                 Citizenship
                             </StyledLabel>
-                            <StyledValue>
-                                { citizenship }
+                            <StyledValue style={{ display: "flex" }}>
+                                {citizenship?.map((code: string) => {
+                                    const country = COUNTRY_FLAGS.find(flag => flag.code?.toLowerCase() === code.toLowerCase());
+
+                                    return country ? <img src={country.flag} alt={country.code} title={country.country} style={{
+                                        width: '32px',
+                                        marginRight: '10px'
+                                    }} /> : null;
+                                })}
                             </StyledValue>
                         </Grid>
                     </Grid>

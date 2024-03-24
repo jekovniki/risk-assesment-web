@@ -58,7 +58,9 @@ const DefaultLayout = ({ children, title, email }: { children: ReactNode, title:
 
 }
 
-const StyledMain = styled.main``;
+const StyledMain = styled.main`
+    box-sizing: border-box;
+`;
 
 const StyledHeader = styled.h1`
     font-size: 20px;
