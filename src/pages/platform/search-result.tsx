@@ -6,6 +6,7 @@ import DefaultLayout from "../../features/platform/common/containers/layout";
 import { useGetUser } from "../../services/users";
 import { Loader } from "../../features/platform/common/components/loader";
 import { ResultCard } from "../../features/platform/search/container/result-card";
+import BasicTabs from "../../features/platform/search/container/search-result-tabs";
 
 const SearchResult = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
@@ -19,6 +20,9 @@ const SearchResult = () => {
             <Grid container gap={3} mt={2}>
                 <Grid item xs={11.4}>
                     <ResultCard key={pageData.caption} data={pageData} isOpen={true} />
+                </Grid>
+                <Grid item ml={3} xs={11.4}>
+                    <BasicTabs data={pageData} />
                 </Grid>
             </Grid>
             }
