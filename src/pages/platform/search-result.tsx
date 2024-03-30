@@ -11,13 +11,14 @@ const SearchResult = () => {
     const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
     const email = data && data.email ? data.email : "";
     const location = useLocation();
+    const pageData = location.state.data;
     
     return (
-        <DefaultLayout title={"Search Result" + ": " + location.state.data.caption} email={email}>
+        <DefaultLayout title={"Search Result" + ": " + pageData.caption} email={email}>
             { isLoading ? <Loader /> :
             <Grid container gap={3} mt={2}>
                 <Grid item xs={11.4}>
-                    <ResultCard key={location.state.data.caption} data={location.state.data} isOpen={true} />
+                    <ResultCard key={pageData.caption} data={pageData} isOpen={true} />
                 </Grid>
             </Grid>
             }

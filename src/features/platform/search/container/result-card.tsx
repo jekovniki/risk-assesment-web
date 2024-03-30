@@ -79,10 +79,7 @@ export const ResultCard = ({ data, isOpen = false }: { data: Record<string, any>
                                 {citizenship?.map((code: string) => {
                                     const country = COUNTRY_FLAGS.find(flag => flag.code?.toLowerCase() === code.toLowerCase());
 
-                                    return country ? <img src={country.flag} alt={country.code} title={country.country} style={{
-                                        width: '32px',
-                                        marginRight: '10px'
-                                    }} /> : null;
+                                    return country ? <div style={{width: "32px", marginRight: "10px"}} dangerouslySetInnerHTML={{__html: country.flag }}></div> : null;
                                 })}
                             </StyledValue>
                         </Grid>

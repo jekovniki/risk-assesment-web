@@ -6,3 +6,7 @@ export const SearchQueryKeys = {
         Entities: ["entities"]
     }
 }
+
+export const CasesQueryKeys = {
+    All: ["all"]
+}
