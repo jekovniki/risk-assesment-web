@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import TuneIcon from '@mui/icons-material/Tune'
-
 import { useSearchMutation } from "../../../../services/search";
 
 export const SmallSearch = () => {
