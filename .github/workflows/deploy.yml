@@ -25,5 +25,5 @@ jobs:
           touch .env
           echo REACT_APP_SERVER_URL=${{ secrets.REACT_APP_SERVER_URL }} >> .env
           echo REACT_APP_ENV=${{ secrets.REACT_APP_ENVPORT }} >> .env
-      - run: npm build
+      - run: npm run build
       - run: cp -r ./build/ /var/www/html
