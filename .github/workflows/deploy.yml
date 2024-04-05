@@ -19,11 +19,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: yarn install
+      - run: npm install
       - name: "Make .env file"
         run: |
           touch .env
           echo REACT_APP_SERVER_URL=${{ secrets.REACT_APP_SERVER_URL }} >> .env
           echo REACT_APP_ENV=${{ secrets.REACT_APP_ENVPORT }} >> .env
-      - run: yarn build
+      - run: npm build
       - run: cp -r ./build/ /var/www/html
