@@ -15,7 +15,6 @@ function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
     function setQuery(newQuery: string) {
         setInputValue(newQuery);
     }
-
     const handleClick = () => {
         onSubmit({
             search: inputValue
