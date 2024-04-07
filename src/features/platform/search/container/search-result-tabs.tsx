@@ -99,10 +99,10 @@ const BasicTabs = ({ data }: { data: Record<string, any> }) => {
                     </div>
                 </TabRow>
                 <TabRow name="Notes">
-                    {data?.properties?.notes.toString()}
+                    {data?.properties?.notes?.toString() || ""}
                 </TabRow>
                 <TabRow name="Keywords">
-                    {data?.properties?.keywords.toString()}
+                    {data?.properties?.keywords?.toString() || ""}
                 </TabRow>
                 <TabRow name="Position">
                     {data?.properties?.position?.map((position: string) => <div style={{ marginBottom: "1rem" }}>{position}</div>)}
@@ -116,13 +116,13 @@ const BasicTabs = ({ data }: { data: Record<string, any> }) => {
             </SearchResultTabs>
             <SearchResultTabs value={value} index={1}>
                 <TabRow name="Address">
-                    {data?.properties?.address.toString()}
+                    {data?.properties?.address?.toString() || ""}
                 </TabRow>
                 <TabRow name="Passport Number">
                     {data?.properties?.passportNumber?.[0]}
                 </TabRow>
                 <TabRow name="Birth place">
-                    {data?.properties?.birthPlace.toString()}
+                    {data?.properties?.birthPlace?.toString() || ""}
                 </TabRow>
                 <TabRow name="Birth date">
                     {data?.properties?.birthDate ? format(data.properties.birthDate[0], 'PPP') : ""}
