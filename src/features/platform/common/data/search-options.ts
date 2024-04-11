@@ -76,3 +76,22 @@ export const GENDER_OPTIONS = [
         "value": "female"
     }
 ]
+
+export const ID_TYPE_OPTIONS = [
+    {
+        "label": "Any",
+        "value": ""
+    },
+    {
+        "label": "ID Card",
+        "value": "ID"
+    },
+    {
+        "label": "Driving License",
+        "value": "driving"
+    },
+    {
+        "label": "Passport",
+        "value": "passport"
+    }
+]
