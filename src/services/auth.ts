@@ -27,6 +27,8 @@ export const signIn = async (credentials: ICredentials) => {
     return response;
 }
 
+export const signInWithGoogle = APP_URL + '/api/v1/auth/auth/google';
+
 export const signUp = async (credentials: IRegistration) => {
     return await FetchAPI.post(APP_URL + '/api/v1/auth/sign-up', credentials, {
         withCredentials: true
