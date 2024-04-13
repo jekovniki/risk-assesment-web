@@ -6,13 +6,9 @@ import { APP_URL } from "../utils/constants";
 
 interface ISearch {
     search: string;
-    schema: string;
     page?: number | undefined;
     limit?: number | undefined;
-    nationality: string;
-    country: string;
-    gender: string;
-    byAlias: boolean;
+    ongoingScreening: boolean;
 }
 
 export const search = async (input: ISearch) => {
@@ -51,14 +47,7 @@ export const useSearchMutation = () => {
     const [loading, setLoading] = useState(false);
     const defaultSearch = { 
         search: "", 
-        schema: "", 
-        nationality: "", 
-        country: "",
-        gender: "",
-        name: "",
-        byAlias: false,
-        firstName: "",
-        position: ""
+        ongoingScreening: false
      };
     const [formError, setFormError] = useState<ISearch>(defaultSearch);
     const [errorMessage, setErrorMessage] = useState("");

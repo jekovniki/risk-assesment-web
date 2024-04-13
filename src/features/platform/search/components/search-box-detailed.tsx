@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useState, useRef } from 'react';
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { TextField, InputLabel, MenuItem, FormControl, Select, FormControlLabel, FormGroup, Checkbox } from "@mui/material";
 import { LoadingButton } from '@mui/lab';
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
@@ -9,6 +9,7 @@ import { ENTITIES_OPTIONS, ID_TYPE_OPTIONS } from '../../common/data/search-opti
 import { COUNTRIES } from '../../../../utils/countries';
 
 function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
+    const [errorMessage, setErrorMessage] = useState("");
     const [entities, setEntities] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [idValue, setIdValue] = useState("");
@@ -34,8 +35,21 @@ function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
         // Good f*cking luck reading this
         search += JSON.stringify(dateOfBirth) !== '{}' ?
             `${dateOfBirth.$y}-${dateOfBirth.$M > 9 ? dateOfBirth.$M : "0" + dateOfBirth.$M}-${dateOfBirth.$D > 9 ? dateOfBirth.$D : "0" + dateOfBirth.$D}` : "";
-
-        onSubmit({ search });
+        if (!search) {
+            setErrorMessage("At least one of the fields should be filled in order to search");
+        }
+        onSubmit({ 
+            search,
+            name: inputValue,
+            entities: entities,
+            citizenship: citizenship,
+            nationality: nationality,
+            idValue: idValue,
+            issuer: issuer,
+            idType: idType,
+            dateOfBirth: JSON.stringify(dateOfBirth) !== '{}' ? `${dateOfBirth.$y}-${dateOfBirth.$M > 9 ? dateOfBirth.$M : "0" + dateOfBirth.$M}-${dateOfBirth.$D > 9 ? dateOfBirth.$D : "0" + dateOfBirth.$D}` : "",
+            ongoingScreening: false
+         });
     }
 
     return (
@@ -181,6 +195,7 @@ function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
                             autoComplete="off"
                             autoCorrect="off"
                             autoCapitalize="off"
+                            fullWidth
                             type="search"
                             value={idValue}
                             style={{ marginBottom: "1rem" }}
@@ -195,13 +210,18 @@ function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
                 paddingTop: "8px",
                 paddingLeft: "1.8rem"
             }}>Screening Settings</Grid>
-            <StyledWrapper>
+            <StyledWrapper style={{ paddingBottom: "12px" }}>
                 <FormGroup>
                     <FormControlLabel control={<Checkbox />} label="Enable Ongoing Screening" />
                 </FormGroup>
             </StyledWrapper>
+            <hr style={{
+                borderColor: "rgba(0, 0, 0, 0.4)"
+            }}/>
+            {errorMessage ? <div style={{ color: "red" }}>{errorMessage}</div> : "" }
             <StyledWrapper style={{
-                textAlign: "right"
+                textAlign: "right",
+                paddingTop: "12px"
             }}>
                 <LoadingButton
                     type="submit"

@@ -7,27 +7,48 @@ import DefaultLayout from "../../features/platform/common/containers/layout";
 import { Loader } from "../../features/platform/common/components/loader";
 import CustomSearchBoxDetailed from "../../features/platform/search/components/search-box-detailed";
 import { ResultCard } from "../../features/platform/search/container/result-card";
-import StatisticsBox from "../../features/platform/search/container/statistics-box";
+import SearchAccordion from "../../features/platform/search/container/search-accordion";
 
 const NewSearch = () => {
     const { isLoading, data }: { isLoading: boolean, error: any, data: any } = useGetUser();
     const email = data && data.email ? data.email : "";
+    const [open, setOpen] = useState(false);
+    const [searchedData, setSearchedData] = useState({
+        name: "",
+        entities: "",
+        citizenship: "",
+        nationality: "",
+        idValue: "",
+        issuer: "",
+        idType: "",
+        dateOfBirth: ""
+    });
     const [result, setResult] = useState([] as any);
-    const search = useSearch();
+    const find = useSearch();
 
-    const handleSearch = (input: { search: string }) => {
+    const handleSearch = (input: {
+        search: string,
+        name: string,
+        entities: string,
+        citizenship: string,
+        nationality: string,
+        idValue: string,
+        issuer: string,
+        idType: string,
+        dateOfBirth: string,
+        ongoingScreening: boolean
+    }) => {
         try {
-            search.mutate({
+            const { search, ongoingScreening, ...searchValues } = input;
+            setSearchedData(searchValues);
+            find.mutate({
                 search: input.search,
-                schema: "",
-                nationality: '',
-                country: '',
-                gender: "",
-                byAlias: false
+                ongoingScreening: ongoingScreening
             }, {
                 onSuccess: (data) => {
                     console.log(data);
                     setResult(data.data);
+                    setOpen(true)
                 }
             })
         } catch (error) {
@@ -57,12 +78,13 @@ const NewSearch = () => {
             {isLoading ? <Loader /> :
                 <>
                     <Grid container padding={2} color="rgba(68, 83, 114, 1)">
-                        <Grid container item xs={12} md={5} lg={4}>
+                        {/* <Grid container item xs={12} md={5} lg={4} style={{height: "fit-content"}}>
                             <StatisticsBox title="Group" items={group} />
                             <StatisticsBox title="Match Name Type" items={[]} />
                             <StatisticsBox title="Gender" items={[]} />
-                        </Grid>
-                        <Grid container item xs={12} md={7} lg={8}>
+                        </Grid> */}
+                        {/* <Grid container item xs={12} md={7} lg={8}> */}
+                        <SearchAccordion show={open} searchValues={searchedData}>
                             <StyledCard>
                                 <Grid container gap={0}>
                                     <Grid item xs={12}>
@@ -70,22 +92,22 @@ const NewSearch = () => {
                                     </Grid>
                                 </Grid>
                             </StyledCard>
-                        </Grid>
+                        </SearchAccordion>
                     </Grid>
                     <Grid container>
                         <Grid item xs={12}>
                             <StyledWrapper>
-                                    <Grid item xs={11.4}>
-                                        { 
-                                        search.isLoading ? <Loader /> : result && result?.hits?.length ? 
-                                        result.hits.map((item: Record<string, any>) => 
-                                            <ResultCard
-                                                key={item.caption}
-                                                data={item}
-                                                isOpen={false}
-                                        />)
-                                        : ""}
-                                    </Grid>
+                                <Grid item xs={11.4}>
+                                    {
+                                        find.isLoading ? <Loader /> : result && result?.hits?.length ?
+                                            result.hits.map((item: Record<string, any>) =>
+                                                <ResultCard
+                                                    key={item.caption}
+                                                    data={item}
+                                                    isOpen={false}
+                                                />)
+                                            : ""}
+                                </Grid>
                             </StyledWrapper>
                         </Grid>
                     </Grid>
