@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 import { useSearchHisory } from "../../features/platform/search/api/use-search-history";
 import { useGetUser } from "../../services/users";
 import DefaultLayout from "../../features/platform/common/containers/layout";
@@ -23,15 +24,15 @@ const Dashboard = () => {
                         <WelcomeBox name={firstName} />
                     </Grid>
                     <Grid container padding={2} >
-                        <Grid container item xs={12} md={8} lg={9}>
+                        <Grid container item xs={11.5} lg={9}>
                             <Grid item xs={12}>
                                 <SmallSearch value="Delyan Peevski" disabled={true} />
                             </Grid>
                             <Grid item xs={12} mt={2} mr={2}>
                             </Grid>
                         </Grid>
-                        <Grid container item xs={12} md={4} lg={3} pl={6}>
-                            <Grid item xs={12} md={11} lg={11}>
+                        <WrapperDiv container item xs={12} md={12} lg={3}>
+                            <Grid item xs={11.5}>
                                 <LatestSearch input={latestSearch.map(history => {
                                     return {
                                         name: history.search,
@@ -39,12 +40,22 @@ const Dashboard = () => {
                                     }
                                 })} loading={searchHistory.isLoading}/>
                             </Grid>
-                        </Grid>
+                        </WrapperDiv>
                     </Grid>
                 </>
             }
         </DefaultLayout>
     )
 }
+
+const WrapperDiv = styled(Grid)`
+    padding-left: 3rem;
+    @media only screen and (max-width: 1100px) {
+        padding-left:0!important;
+        > div {
+            margin-left: 0rem;
+        }
+    }
+`;
 
 export default Dashboard;
