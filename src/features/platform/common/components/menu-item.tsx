@@ -8,14 +8,15 @@ interface IMenuItem {
     icon: ReactNode;
     route: string;
     active: boolean;
+    open: boolean;
 }
-export const MenuItem = ({ title, icon, route, active } : IMenuItem) => {
+export const MenuItem = ({ title, icon, route, active, open } : IMenuItem) => {
     const navigate = useNavigate();
     return (
         <StyledDiv className={active ? "active" : "" } onClick={() => { navigate(route) }}>
             { icon }
             <StyledTitle>
-                { title }
+                { open ? title : "" }
             </StyledTitle>
         </StyledDiv>
     )

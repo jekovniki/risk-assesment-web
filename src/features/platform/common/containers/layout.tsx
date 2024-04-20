@@ -7,6 +7,7 @@ import Navigation from "./navigation";
 
 const DefaultLayout = ({ children, title, email }: { children: ReactNode, title: string, email: string }) => {
     const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
+    const [navOpen, setNavOpen] = useState(true);
     const open = Boolean(anchorElement);
     const navigation = useNavigate();
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,10 +18,10 @@ const DefaultLayout = ({ children, title, email }: { children: ReactNode, title:
     };
     return (
         <StyledGrid container>
-            <Grid item xs={12} md={3} lg={2}>
-                <Navigation />
+            <Grid item xs={navOpen ? 6 : 1} md={navOpen ? 3 : 1} lg={navOpen ? 2 : 1} xl={navOpen ? 2 : .6}>
+                <Navigation onClick={() => { setNavOpen(!navOpen) }} open={navOpen} />
             </Grid>
-            <Grid item xs={12} md={9} lg={10}>
+            <Grid item xs={navOpen ? 6 : 11} md={navOpen ? 9 : 11} lg={navOpen ? 10 : 11} xl={navOpen ? 10 : 11.4}>
                 <StyledTopContainer>
                     <StyledDiv>
                         <StyledHeader>{title}</StyledHeader>

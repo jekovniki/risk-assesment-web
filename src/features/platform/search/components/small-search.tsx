@@ -120,6 +120,7 @@ const StyledWrapper = styled.div`
     &.disabled {
         opacity: .5;
         &:hover {
+            cursor: pointer;
             .display-text {
                 opacity: 1;
                 transition: .4s;
