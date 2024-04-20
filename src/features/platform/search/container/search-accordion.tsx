@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
-import { stringify } from "querystring";
+import { searchInputs } from "../components/search-inputs";
 
-const SearchAccordion = ({ show = false, searchValues, children }: { show: boolean, searchValues: {
+export interface ISearchValues {
     name: string,
     entities: string,
     citizenship: string,
@@ -12,33 +12,10 @@ const SearchAccordion = ({ show = false, searchValues, children }: { show: boole
     issuer: string,
     idType: string,
     dateOfBirth: string
-}, children: any }) => {
-    const [open, setOpen] = useState(false);
+}
 
-    const renderSearchInputs = () => {
-        const inputs = Object.keys(searchValues).map((key, index) => {
-            const value = searchValues[key];
-            let label = key;
-            if (label === "idType") {
-                label = "Document type"
-            }
-            if (label === 'idValue') {
-                label = "Document number"
-            }
-            if (label === 'dateOfBirth') {
-                label = 'Date of Birth'
-            }
-            if (value) {
-                return (
-                    <span style={{ textTransform: "capitalize", marginRight: ".75rem" }}>
-                        {label} "<strong>{value}</strong>"
-                    </span>
-                );
-            }
-            return null;
-        });
-        return inputs;
-    };
+const SearchAccordion = ({ show = false, searchValues, children }: { show: boolean, searchValues: ISearchValues, children: any }) => {
+    const [open, setOpen] = useState(false);
 
     return (
         <StyledWrapper>
@@ -47,7 +24,7 @@ const SearchAccordion = ({ show = false, searchValues, children }: { show: boole
                     <StyledCard onClick={() => {setOpen(!open)}}>
                         <Grid container gap={0}>
                             <Grid item xs={12} style={{ textAlign: "left" }} pl={3} pt={4} pb={4}>
-                            { renderSearchInputs() }
+                            { searchInputs(searchValues) }
                             </Grid>
                         </Grid>
                     </StyledCard>

@@ -1,18 +1,36 @@
 import styled from "@emotion/styled";
-import { Grid } from "@mui/material";
+import { Grid, Modal, Typography, Box } from "@mui/material";
 import { useState } from "react";
 import { useGetUser } from "../../services/users";
 import { useSearch } from "../../features/platform/search/api/use-search";
 import DefaultLayout from "../../features/platform/common/containers/layout";
 import { Loader } from "../../features/platform/common/components/loader";
 import CustomSearchBoxDetailed from "../../features/platform/search/components/search-box-detailed";
-import { ResultCard } from "../../features/platform/search/container/result-card";
 import SearchAccordion from "../../features/platform/search/container/search-accordion";
+import SearchResults from "../../features/platform/search/container/search-results";
+import { SearchResultCheckbox } from "../../features/platform/search/components/search-result-checkbox";
+
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    borderRadius: "20px",
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    color: '#FF6961',
+    bgcolor: '#f8f8f8',
+    border: '2px solid #FF6961',
+    textAlign: 'center',
+    boxShadow: 24,
+    p: 4,
+  };
 
 const NewSearch = () => {
     const { isLoading, data }: { isLoading: boolean, error: any, data: any } = useGetUser();
     const email = data && data.email ? data.email : "";
     const [open, setOpen] = useState(false);
+    const [isSearched, setIsSearch] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [searchedData, setSearchedData] = useState({
         name: "",
         entities: "",
@@ -48,7 +66,13 @@ const NewSearch = () => {
                 onSuccess: (data) => {
                     console.log(data);
                     setResult(data.data);
-                    setOpen(true)
+                    setOpen(true);
+                    setIsSearch(true);
+                },
+                onError: (error: any) => {
+                    const errorMessage = error?.response?.data?.error || error.message || "Internal error";
+                    setErrorMessage(errorMessage)
+                    console.error(error);
                 }
             })
         } catch (error) {
@@ -94,25 +118,43 @@ const NewSearch = () => {
                             </StyledCard>
                         </SearchAccordion>
                     </Grid>
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <StyledWrapper>
-                                <Grid item xs={11.4}>
-                                    {
-                                        find.isLoading ? <Loader /> : result && result?.hits?.length ?
-                                            result.hits.map((item: Record<string, any>) =>
-                                                <ResultCard
-                                                    key={item.caption}
-                                                    data={item}
-                                                    isOpen={false}
-                                                />)
-                                            : ""}
-                                </Grid>
-                            </StyledWrapper>
-                        </Grid>
-                    </Grid>
+                    {isSearched ?
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <StyledWrapper>
+                                    <Grid item xs={11.8} ml={2}>
+                                        <SearchResults name={searchedData.name} resultsLength={result?.hits?.length}>
+                                            {
+                                                find.isLoading ? <Loader /> : result && result?.hits?.length ?
+                                                    result.hits.map((item: Record<string, any>) =>
+
+                                                        <SearchResultCheckbox
+                                                            key={item.caption}
+                                                            data={item}
+                                                        />
+
+                                                    )
+                                                    : ""}
+                                        </SearchResults>
+                                    </Grid>
+                                </StyledWrapper>
+                            </Grid>
+                        </Grid> : ""}
+
                 </>
             }
+            <Modal
+                open={Boolean(errorMessage)}
+                onClose={() => {setErrorMessage('')}}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-description" sx={{ m: 2 }}>
+                        { errorMessage }
+                    </Typography>
+                </Box>
+            </Modal>
         </DefaultLayout>
     )
 }

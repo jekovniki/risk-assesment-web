@@ -35,8 +35,9 @@ function CustomSearchBoxDetailed({ onSubmit }: { onSubmit: any }) {
         // Good f*cking luck reading this
         search += JSON.stringify(dateOfBirth) !== '{}' ?
             `${dateOfBirth.$y}-${dateOfBirth.$M > 9 ? dateOfBirth.$M : "0" + dateOfBirth.$M}-${dateOfBirth.$D > 9 ? dateOfBirth.$D : "0" + dateOfBirth.$D}` : "";
-        if (!search) {
+        if (!search || search.length < 3) {
             setErrorMessage("At least one of the fields should be filled in order to search");
+            return;
         }
         onSubmit({ 
             search,

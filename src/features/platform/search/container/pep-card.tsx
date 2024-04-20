@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { COUNTRY_FLAGS } from "../../../../utils/countries";
 import ResolveCaseIconForm from "./resolve-case-icon-form";
 
-export const ResultCard = ({ data, isOpen = false }: { data: Record<string, any>, isOpen: boolean }) => {
+export const PepCard = ({ data, isOpen = false }: { data: Record<string, any>, isOpen: boolean }) => {
     if (!data) {
         return "";
     }
