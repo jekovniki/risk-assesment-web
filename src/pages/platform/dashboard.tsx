@@ -25,7 +25,7 @@ const Dashboard = () => {
                     <Grid container padding={2} >
                         <Grid container item xs={12} md={8} lg={9}>
                             <Grid item xs={12}>
-                                <SmallSearch value="Delyan Peevski" />
+                                <SmallSearch value="Delyan Peevski" disabled={true} />
                             </Grid>
                             <Grid item xs={12} mt={2} mr={2}>
                             </Grid>
