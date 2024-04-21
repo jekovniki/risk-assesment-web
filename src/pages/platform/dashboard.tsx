@@ -9,7 +9,7 @@ import { SmallSearch } from "../../features/platform/search/components/small-sea
 import { LatestSearch } from "../../features/platform/search/components/latest-search";
 
 const Dashboard = () => {
-    const { isLoading, error, data }: {isLoading : boolean, error: any, data: any} = useGetUser();
+    const { isLoading, error, data }: { isLoading: boolean, error: any, data: any } = useGetUser();
     const email = data && data.email ? data.email : "";
     const firstName = data && data.firstName ? data.firstName : "";
     const searchHistory = useSearchHisory();
@@ -17,32 +17,24 @@ const Dashboard = () => {
 
     return (
         <DefaultLayout title="Dashboard" email={email}>
-            {isLoading ? 
-            <Loader /> :
-                <>
-                    <Grid container padding={2} paddingBottom={0}>
+            {isLoading ?
+                <Loader /> :
+                <Grid container padding={2}>
+                    <Grid item xs={10.3} sm={10.65} md={10.9} lg={11.15} xl={11.45} paddingBottom={2}>
                         <WelcomeBox name={firstName} />
                     </Grid>
-                    <Grid container padding={2} >
-                        <Grid container item xs={11.5} lg={9}>
-                            <Grid item xs={12}>
-                                <SmallSearch value="Delyan Peevski" disabled={true} />
-                            </Grid>
-                            <Grid item xs={12} mt={2} mr={2}>
-                            </Grid>
-                        </Grid>
-                        <WrapperDiv container item xs={12} md={12} lg={3}>
-                            <Grid item xs={11.5}>
-                                <LatestSearch input={latestSearch.map(history => {
-                                    return {
-                                        name: history.search,
-                                        keyData: ['Open sanctions']
-                                    }
-                                })} loading={searchHistory.isLoading}/>
-                            </Grid>
-                        </WrapperDiv>
+                    <Grid item xs={12} xl={8.75} pr={5} pb={2}>
+                        <SmallSearch value="Delyan Peevski" disabled={true} />
                     </Grid>
-                </>
+                    <Grid item xs={11.59} xl={3}>
+                        <LatestSearch input={latestSearch.map(history => {
+                            return {
+                                name: history.search,
+                                keyData: ['Open sanctions']
+                            }
+                        })} loading={searchHistory.isLoading} />
+                    </Grid>
+                </Grid>
             }
         </DefaultLayout>
     )
