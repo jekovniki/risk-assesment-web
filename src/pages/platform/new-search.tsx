@@ -80,34 +80,29 @@ const NewSearch = () => {
         }
     }
 
-    const group = [{
-        text: 'Unresolved',
-        value: 148
-    }, {
-        text: 'Positive',
-        value: "0"
-    }, {
-        text: 'Possible',
-        value: "0"
-    }, {
-        text: "False",
-        value: 2
-    }, {
-        text: 'Unspecified',
-        value: "0"
-    }]
+    const [checkedItems, setCheckedItems] = useState([] as any);
+
+    const handleMarkAsFalse = () => {
+        const updatedResult = result.hits.filter((item: any) => !checkedItems.includes(item.caption));
+        setResult({
+            ...result,
+            hits: updatedResult
+        });
+    }
+
+    const handleCheckboxChange = (name: string, isChecked: boolean) => {
+        if (isChecked) {
+            setCheckedItems((prevItems: any) => [...prevItems, name]);
+        } else {
+            setCheckedItems((prevItems: any) => prevItems.filter((item: any) => item !== name));
+        }
+    };
 
     return (
         <DefaultLayout title="New Search" email={email}>
             {isLoading ? <Loader /> :
                 <>
                     <Grid container padding={2} color="rgba(68, 83, 114, 1)">
-                        {/* <Grid container item xs={12} md={5} lg={4} style={{height: "fit-content"}}>
-                            <StatisticsBox title="Group" items={group} />
-                            <StatisticsBox title="Match Name Type" items={[]} />
-                            <StatisticsBox title="Gender" items={[]} />
-                        </Grid> */}
-                        {/* <Grid container item xs={12} md={7} lg={8}> */}
                         <SearchAccordion show={open} searchValues={searchedData}>
                             <StyledCard>
                                 <Grid container gap={0}>
@@ -123,16 +118,16 @@ const NewSearch = () => {
                             <Grid item xs={12}>
                                 <StyledWrapper>
                                     <Grid item xs={11.8} ml={2}>
-                                        <SearchResults name={searchedData.name} resultsLength={result?.hits?.length}>
+                                        <SearchResults name={searchedData.name} resultsLength={result?.hits?.length} onMarkAsFalse={handleMarkAsFalse}>
                                             {
                                                 find.isLoading ? <Loader /> : result && result?.hits?.length ?
                                                     result.hits.map((item: Record<string, any>) =>
-
                                                         <SearchResultCheckbox
                                                             key={item.caption}
                                                             data={item}
+                                                            checked={checkedItems[item.caption]}
+                                                            onCheckboxChange={handleCheckboxChange}
                                                         />
-
                                                     )
                                                     : ""}
                                         </SearchResults>

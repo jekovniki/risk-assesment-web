@@ -14,7 +14,7 @@ export interface ISearchValues {
     dateOfBirth: string
 }
 
-const SearchResults = ({ name, resultsLength, children }: { name: string, resultsLength: number, children: any }) => {
+const SearchResults = ({ name, resultsLength, onMarkAsFalse = () => {},  children }: { name: string, resultsLength: number, onMarkAsFalse: any,  children: any }) => {
     return (
         <StyledWrapper>
             <Grid container item xs={12}>
@@ -30,7 +30,7 @@ const SearchResults = ({ name, resultsLength, children }: { name: string, result
                                     Showing <strong>{resultsLength}</strong> of <strong>{resultsLength}</strong> results for <strong>"{name}"</strong>
                                 </div>
                                 <div style={{display: "flex"}}>
-                                    <StyledMarkAsFalse>
+                                    <StyledMarkAsFalse onClick={onMarkAsFalse}>
                                         <DoDisturbIcon style={{ fontSize: '1rem'}} />Mark as False
                                     </StyledMarkAsFalse>
                                     <StyledMarkAsFalse style={{marginLeft: ".75rem"}}>

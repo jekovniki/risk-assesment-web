@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, FormControlLabel, FormGroup, Grid } from "@mui/material";
 import { COUNTRY_FLAGS } from "../../../../utils/countries";
 
-export const SearchResultCheckbox = ({ data }: { data: Record<string, any> }) => {
-    const [checked, setChecked] = useState(false);
+export const SearchResultCheckbox = ({ data, checked, onCheckboxChange }: { data: Record<string, any>, checked: boolean, onCheckboxChange: (name: string, isChecked: boolean) => void }) => {
     const name = data.caption;
     const dateOfBirth = data.properties.birthDate?.[0] || '';
     const placeOfBirth = data.properties.birthPlace?.[0] || '';
@@ -13,7 +12,17 @@ export const SearchResultCheckbox = ({ data }: { data: Record<string, any> }) =>
     const citizenship = data.properties.nationality || [];
     const country = data.properties.country || [];
     const navigate = useNavigate();
+    const [isChecked, setIsChecked] = useState<boolean>(checked);
 
+    useEffect(() => {
+        setIsChecked(checked);
+    }, [checked]);
+
+    const handleCheckboxClick = () => {
+        const newCheckedState = !isChecked;
+        setIsChecked(newCheckedState);
+        onCheckboxChange(data.caption, newCheckedState);
+    };
     const handleGoToPepPage = () => {
         navigate('/search-result', { state: { data } });
     }
@@ -23,7 +32,7 @@ export const SearchResultCheckbox = ({ data }: { data: Record<string, any> }) =>
             <StyledTopLine>
                 <LeftColumn>
                     <FormGroup>
-                        <FormControlLabel onClick={() => { setChecked(!checked) }} control={<Checkbox />} checked={checked} label={<span onClick={handleGoToPepPage}>{name}</span>} />
+                        <FormControlLabel onClick={handleCheckboxClick} control={<Checkbox />} checked={checked} label={<span onClick={handleGoToPepPage}>{name}</span>} />
                     </FormGroup>
                 </LeftColumn>
                 <RightColumn>
