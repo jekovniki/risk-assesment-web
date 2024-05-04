@@ -2,6 +2,11 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 export default class FetchAPI {
     static async get<T>(url: string, configuration: AxiosRequestConfig = { headers: { 'Content-Type': 'application/json' } }): Promise<AxiosResponse<T>> {
+        console.log('configuration: ', {
+            configuration,
+            withCredentials: true
+        })
+        
         const response: AxiosResponse<T> = await axios.get(url, {
             ...configuration,
             withCredentials: true
@@ -11,6 +16,11 @@ export default class FetchAPI {
     }
 
     static async post<T>(url: string, body: any = {}, headers: AxiosRequestConfig['headers'] = { 'Content-Type': 'application/json' }): Promise<AxiosResponse<T>> {
+        console.log('headers: ', {
+            headers,
+            withCredentials: true
+        })
+        
         const response: AxiosResponse<T> = await axios.post(url, body, {
             headers,
             withCredentials: true
@@ -20,6 +30,11 @@ export default class FetchAPI {
     }
 
     static async put<T>(url: string, body: any = {}, headers: AxiosRequestConfig['headers'] = { 'Content-Type': 'application/json' }): Promise<AxiosResponse<T>> {
+        console.log('headers: ', {
+            headers,
+            withCredentials: true
+        })
+        
         const response: AxiosResponse<T> = await axios.put(url, body, {
             headers,
             withCredentials: true
